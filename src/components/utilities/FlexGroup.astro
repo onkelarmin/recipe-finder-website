@@ -1,0 +1,104 @@
+---
+// Types
+import type { HTMLAttributes } from "astro/types";
+
+const justifyContentOptions = {
+  start: "flex-start",
+  end: "flex-end",
+  center: "center",
+  between: "space-between",
+  around: "space-around",
+  evenly: "space-evenly",
+};
+
+const alignItemsOptions = {
+  stretch: "stretch",
+  start: "flex-start",
+  end: "flex-end",
+  center: "center",
+  baseline: "baseline",
+};
+
+interface Props extends HTMLAttributes<"div"> {
+  dir?: "row" | "col";
+  primAxis?: keyof typeof justifyContentOptions;
+  secAxis?: keyof typeof alignItemsOptions;
+  gap?: string;
+  colGap?: string;
+  rowGap?: string;
+  center?: boolean;
+  classes?: string;
+}
+
+const {
+  dir = "row",
+  primAxis = "start",
+  secAxis = "center",
+  gap = "md",
+  colGap,
+  rowGap,
+  classes,
+  ...rest
+} = Astro.props;
+
+const colGapStr = colGap
+  ? `var(--space-cont-${colGap})`
+  : `var(--space-cont-${gap})`;
+const rowGapStr = rowGap
+  ? `var(--space-cont-${rowGap})`
+  : `var(--space-cont-${gap})`;
+const justifyContent = justifyContentOptions[primAxis];
+const alignItems = alignItemsOptions[secAxis];
+---
+
+<div class:list={["flex-group", dir, classes]} {...rest}>
+  <slot />
+</div>
+
+<style
+  lang="scss"
+  define:vars={{ justifyContent, alignItems, colGapStr, rowGapStr }}
+>
+  @use "@sass/miscellaneous" as *;
+
+  .flex-group {
+    display: flex;
+    justify-content: var(--justifyContent);
+    align-items: var(--alignItems);
+    flex-wrap: wrap;
+    column-gap: var(--colGapStr);
+    row-gap: var(--rowGapStr);
+
+    &.row {
+      flex-direction: row;
+    }
+    &.col {
+      flex-direction: column;
+    }
+
+    @include mq(small) {
+      &.dir-sm-row {
+        flex-direction: row;
+      }
+      &.dir-sm-col {
+        flex-direction: column;
+      }
+    }
+    @include mq(medium) {
+      &.dir-md-row {
+        flex-direction: row;
+      }
+      &.dir-md-col {
+        flex-direction: column;
+      }
+    }
+    @include mq(large) {
+      &.dir-lg-row {
+        flex-direction: row;
+      }
+      &.dir-lg-col {
+        flex-direction: column;
+      }
+    }
+  }
+</style>

@@ -1,0 +1,74 @@
+@use "sass:color";
+
+// bs-none is used for transitions
+$box-shadow-colors: (
+  none: (
+    light: "transparent",
+    dark: "transparent",
+  ),
+  header: (
+    light: #d9e5f4,
+    dark: "transparent",
+  ),
+  filter-button: (
+    light: color.change(#b8c4d7, $alpha: 0.4),
+    dark: "transparent",
+  ),
+  card-1: (
+    light: color.change(#c2cee1, $alpha: 0.2),
+    dark: "transparent",
+  ),
+  card-2: (
+    light: color.change(#c2cee1, $alpha: 0.22),
+    dark: "transparent",
+  ),
+  toggle-inactive-1: (
+    light: color.change(#0a0d12, $alpha: 0.15),
+    dark: color.change(#0a0d12, $alpha: 0.1),
+  ),
+  toggle-inactive-2: (
+    light: color.change(#0a0d12, $alpha: 0.15),
+    dark: color.change(#091540, $alpha: 0.6),
+  ),
+  toggle-active-1: (
+    light: color.change(#0a0d12, $alpha: 0.3),
+    dark: color.change(#0a0d12, $alpha: 0.1),
+  ),
+  toggle-active-2: (
+    light: color.change(#0a0d12, $alpha: 0.3),
+    dark: color.change(#091540, $alpha: 0.6),
+  ),
+);
+
+$box-shadows-offsets: (
+  none: 0px 0px 0px 0px,
+  header: 0px 2px 3px 0px,
+  filter-button: 0px 1px 2px 0px,
+  card-1: 0px 2px 2px 0px,
+  card-2: 0px 1px 5px 1px,
+  toggle-inactive-1: 0px 1px 3px 0px,
+  toggle-inactive-2: 0px 1px 2px -1px,
+  toggle-active-1: 0px 1px 3px 0px,
+  toggle-active-2: 0px 1px 2px -1px,
+);
+
+$box-shadows: (
+  header: (
+    var(--bs-header),
+  ),
+  filter-button: (
+    var(--bs-filter-button),
+  ),
+  card: (
+    var(--bs-card-1),
+    var(--bs-card-2),
+  ),
+  toggle-inactive: (
+    var(--bs-toggle-inactive-1),
+    var(--bs-toggle-inactive-2),
+  ),
+  toggle-active: (
+    var(--bs-toggle-active-1),
+    var(--bs-toggle-active-2),
+  ),
+);

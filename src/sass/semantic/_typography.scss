@@ -1,0 +1,39 @@
+@use "../core" as *;
+
+:root {
+  // Font-family
+  --ff-base: "NotoSans", system-ui, sans-serif;
+
+  // Font-sizes
+  @each $category, $size-map in $font-sizes {
+    @each $size, $value in $size-map {
+      --fs-#{$category}-#{$size}: #{$value};
+    }
+  }
+
+  // Font-weights
+  @each $size, $value in $font-weights {
+    --fw-#{$size}: #{$value};
+  }
+
+  // Line-height
+  --lh-sm: 1;
+  --lh-md: 1.2;
+  --lh-lg: 1.4;
+
+  // Letter-spacing
+  --ls-sm: -0.0625em; // -1px
+  --ls-md: -0.03125em; // -0.5px
+  --ls-lg: -0.001875em; // -0.3px
+  --ls-xl: -0.00125em; // -0.2px
+
+  --font-1: var(--fw-bold) var(--fs-title-lg) / var(--lh-sm) var(--ff-base);
+  --font-2: var(--fw-bold) var(--fs-title-md) / var(--lh-md) var(--ff-base);
+  --font-3: var(--fw-regular) var(--fs-interface-lg) / var(--lh-lg)
+    var(--ff-base);
+  --font-4: var(--fw-medium) var(--fs-interface-lg) / var(--lh-lg)
+    var(--ff-base);
+  --font-5: var(--fw-regular) var(--fs-body-md) / var(--lh-lg) var(--ff-base);
+  --font-6: var(--fw-medium) var(--fs-interface-md) / var(--lh-lg)
+    var(--ff-base);
+}

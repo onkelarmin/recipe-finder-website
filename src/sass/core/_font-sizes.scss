@@ -1,0 +1,26 @@
+@use "helper" as *;
+
+$font-size-body-md-min: 16px;
+$font-size-body-md-max: 16px;
+$font-size-title-md-min: 20px;
+$font-size-title-md-max: 20px;
+$font-size-title-lg-min: 34px;
+$font-size-title-lg-max: 34px;
+$font-size-interface-md-min: 16px;
+$font-size-interface-md-max: 16px;
+$font-size-interface-lg-min: 20px;
+$font-size-interface-lg-max: 20px;
+
+$font-sizes: (
+  body: (
+    md: fluid($font-size-body-md-min, $font-size-body-md-max),
+  ),
+  title: (
+    md: fluid($font-size-title-md-min, $font-size-title-md-max),
+    lg: fluid($font-size-title-lg-min, $font-size-title-lg-max),
+  ),
+  interface: (
+    md: fluid($font-size-interface-md-min, $font-size-interface-md-max),
+    lg: fluid($font-size-interface-lg-min, $font-size-interface-lg-max),
+  ),
+);

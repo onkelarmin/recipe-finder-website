@@ -1,0 +1,45 @@
+@use "helper" as *;
+
+// Wrapper max-widths
+$wrapper-sizes: (
+  default: 1170px,
+  narrow: 1088px,
+  wide: 1360px,
+);
+
+//  Logo
+$size-logo-md-width-min: 179px;
+$size-logo-md-width-max: 179px;
+
+$logo-sizes: (
+  md: fluid($size-logo-md-width-min, $size-logo-md-width-max),
+);
+
+// Icons
+$size-icon-theme-min: 22px;
+$size-icon-theme-max: 22px;
+$size-icon-card-min: 60px;
+$size-icon-card-max: 60px;
+
+$icon-sizes: (
+  theme: fluid($size-icon-theme-min, $size-icon-theme-max),
+  card: fluid($size-icon-card-min, $size-icon-card-max),
+);
+
+// Selectables : Element -> Property
+$size-toggle-thumb-min: 16px;
+$size-toggle-thumb-max: 16px;
+$size-toggle-track-width-min: 36px;
+$size-toggle-track-width-max: 36px;
+$size-toggle-track-height-min: 20px;
+$size-toggle-track-height-max: 20px;
+
+$selectable-sizes: (
+  toggle: (
+    thumb: fluid($size-toggle-thumb-min, $size-toggle-thumb-max),
+    track-width:
+      fluid($size-toggle-track-width-min, $size-toggle-track-width-max),
+    track-height:
+      fluid($size-toggle-track-height-min, $size-toggle-track-height-max),
+  ),
+);
