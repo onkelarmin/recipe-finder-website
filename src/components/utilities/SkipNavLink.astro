@@ -1,0 +1,32 @@
+---
+
+---
+
+<a href="#main">Skip navigation</a>
+
+<style lang="scss">
+  a {
+    position: absolute;
+    z-index: 10000;
+    left: max(
+      (100% - var(--size-wrapper-default)) / 2,
+      var(--pad-page-inline-start)
+    );
+    width: fit-content;
+    background-color: var(--bg-container-skip-nav-link);
+    color: var(--fg-text-strong);
+    border: 3px solid var(--bc-skip-nav-link);
+    border-top: none;
+    border-radius: 0 0 var(--br-md) var(--br-md);
+    text-transform: uppercase;
+    padding-block: var(--pad-cont-md);
+    padding-inline: var(--pad-cont-md);
+    transform: translateY(-120%);
+    transition: transform var(--trans-default);
+  }
+
+  a:focus {
+    transform: translateY(0);
+    outline: 0px solid transparent;
+  }
+</style>

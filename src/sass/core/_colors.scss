@@ -65,8 +65,10 @@ $background-colors: (
     hamburger: (
       light: "neutral-000",
     ),
-
     mobile-nav: (
+      light: "neutral-000",
+    ),
+    skip-nav-link: (
       light: "neutral-000",
     ),
   ),
@@ -132,6 +134,55 @@ $button-colors: (
     ),
     focus: (
       outline: (
+        light: "neutral-900",
+      ),
+    ),
+  ),
+  select: (
+    idle: (
+      bg: (
+        light: "neutral-000",
+      ),
+      fg: (
+        light: "neutral-900",
+      ),
+      border: (
+        light: "neutral-300",
+      ),
+    ),
+    hover: (
+      bg: (
+        light: "neutral-000",
+      ),
+      fg: (
+        light: "neutral-900",
+      ),
+      border: (
+        light: "neutral-900",
+      ),
+    ),
+    focus: (
+      bg: (
+        light: "neutral-000",
+      ),
+      fg: (
+        light: "neutral-900",
+      ),
+      offset: (
+        light: "neutral-000",
+      ),
+      outline: (
+        light: "neutral-900",
+      ),
+    ),
+    selected: (
+      bg: (
+        light: "neutral-000",
+      ),
+      fg: (
+        light: "neutral-900",
+      ),
+      border: (
         light: "neutral-900",
       ),
     ),

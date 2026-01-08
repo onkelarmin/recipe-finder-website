@@ -100,6 +100,7 @@ $letter-spacing: (
   md: -0.5px,
   lg: -0.4px,
   xl: -0.3px,
+  none: 0px,
 );
 
 // Fonts
@@ -173,5 +174,12 @@ $fonts: (
     "weight": "bold",
     "line-height": "xl",
     "letter-spacing": "xl",
+  ),
+  11: (
+    "family": "base",
+    "size": "interface-md",
+    "weight": "bold",
+    "line-height": "lg",
+    "letter-spacing": "none",
   ),
 );
