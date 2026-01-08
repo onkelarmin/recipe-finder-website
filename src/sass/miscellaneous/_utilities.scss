@@ -1,4 +1,5 @@
 @use "../core/" as *;
+@use "sass:map";
 
 // Background-color
 @each $context, $semantic-map in $background-colors {
@@ -53,6 +54,14 @@
 @each $semantic, $option-map in $box-shadows {
   .bs-#{$semantic} {
     box-shadow: #{$option-map};
+  }
+}
+
+// Fonts
+@each $name, $property-map in $fonts {
+  .font-#{$name} {
+    font: var(--font-#{$name});
+    letter-spacing: var(--ls-#{map.get($property-map, "letter-spacing")});
   }
 }
 
@@ -113,6 +122,30 @@
 }
 
 // Container padding
+@each $size, $value in $static-sizes {
+  .pad-#{$size} {
+    padding: var(--size-#{$size});
+  }
+  .pad-block-#{$size} {
+    padding-block: var(--size-#{$size});
+  }
+  .pad-block-start-#{$size} {
+    padding-block-start: var(--size-#{$size});
+  }
+  .pad-block-end-#{$size} {
+    padding-block-end: var(--size-#{$size});
+  }
+  .pad-inline-#{$size} {
+    padding-inline: var(--size-#{$size});
+  }
+  .pad-inline-start-#{$size} {
+    padding-inline-start: var(--size-#{$size});
+  }
+  .pad-inline-end-#{$size} {
+    padding-inline-end: var(--size-#{$size});
+  }
+}
+
 @each $size, $value in $padding-container {
   .pad-#{$size} {
     padding: var(--pad-cont-#{$size});
@@ -138,8 +171,32 @@
 }
 
 // Container margin
+@each $size, $value in $static-sizes {
+  .mar-#{$size} {
+    margin: var(--size-#{$size});
+  }
+  .mar-block-#{$size} {
+    margin-block: var(--size-#{$size});
+  }
+  .mar-block-start-#{$size} {
+    margin-block-start: var(--size-#{$size});
+  }
+  .mar-block-end-#{$size} {
+    margin-block-end: var(--size-#{$size});
+  }
+  .mar-inline-#{$size} {
+    margin-inline: var(--size-#{$size});
+  }
+  .mar-inline-start-#{$size} {
+    margin-inline-start: var(--size-#{$size});
+  }
+  .mar-inline-end-#{$size} {
+    margin-inline-end: var(--size-#{$size});
+  }
+}
+
 @each $size, $value in $spacer-container {
-  .mar-cont-#{$size} {
+  .mar-#{$size} {
     margin: var(--space-cont-#{$size});
   }
   .mar-block-#{$size} {
@@ -163,6 +220,12 @@
 }
 
 // Flow
+@each $size, $value in $static-sizes {
+  .flow-#{$size} > * + * {
+    margin-block-start: var(--size-#{$size});
+  }
+}
+
 @each $size, $value in $spacer-container {
   .flow-#{$size} > * + * {
     margin-block-start: var(--space-cont-#{$size});

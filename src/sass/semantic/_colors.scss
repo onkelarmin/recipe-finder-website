@@ -1,20 +1,27 @@
 @use "../core" as *;
+@use "sass:color";
 
 :root {
   // Primitive colors
   @each $key, $value in $color-core-neutral {
-    --clr-neutral-#{$key}: #{$value};
+    --clr-neutral-#{$key}: #{color.to-space($value, oklch)};
+  }
+
+  @each $accent, $key-map in $color-core-accent {
+    @each $key, $value in $key-map {
+      --clr-accent-#{$accent}-#{$key}: #{color.to-space($value, oklch)};
+    }
   }
 
   @each $brand, $key-map in $color-core-brand {
     @each $key, $value in $key-map {
-      --clr-brand-#{$brand}-#{$key}: #{$value};
+      --clr-brand-#{$brand}-#{$key}: #{color.to-space($value, oklch)};
     }
   }
 
   @each $key, $position-map in $color-core-gradient {
     @each $position, $value in $position-map {
-      --clr-gradient-#{$key}-#{$position}: #{$value};
+      --clr-gradient-#{$key}-#{$position}: #{color.to-space($value, oklch)};
     }
   }
 
@@ -71,62 +78,64 @@
   // Color-scheme
   color-scheme: #{$theme};
 
-  // Dark mode
-  @media (prefers-color-scheme: dark) {
-    $theme: "dark";
-    //  Background-colors
-    @each $context, $semantic-map in $background-colors {
-      @each $semantic, $mode-map in $semantic-map {
-        @each $mode, $value in $mode-map {
-          @if $mode == $theme {
-            --bg-#{$context}-#{$semantic}: var(--clr-#{$value});
-          }
-        }
-      }
-    }
-    // Foreground-colors
-    @each $context, $semantic-map in $foreground-colors {
-      @each $semantic, $mode-map in $semantic-map {
-        @each $mode, $value in $mode-map {
-          @if $mode == $theme {
-            --fg-#{$context}-#{$semantic}: var(--clr-#{$value});
-          }
-        }
-      }
-    }
-    // Border-colors
-    @each $semantic, $mode-map in $border-colors {
-      @each $mode, $value in $mode-map {
-        @if $mode == $theme {
-          --bc-#{$semantic}: var(--clr-#{$value});
-        }
-      }
-    }
-    // Box-shadows
-    @each $semantic, $mode-map in $box-shadow-colors {
-      @each $mode, $value in $mode-map {
-        @if $mode == $theme {
-          --clr-bs-#{$semantic}: #{$value};
-        }
-      }
-    }
-    // Button-colors
-    @each $variant, $state-map in $button-colors {
-      @each $state, $role-map in $state-map {
-        @each $role, $mode-map in $role-map {
+  @if $has-themes {
+    // Dark mode
+    @media (prefers-color-scheme: dark) {
+      $theme: "dark";
+      //  Background-colors
+      @each $context, $semantic-map in $background-colors {
+        @each $semantic, $mode-map in $semantic-map {
           @each $mode, $value in $mode-map {
             @if $mode == $theme {
-              --btn-#{$variant}-#{$state}-#{$role}: var(--clr-#{$value});
+              --bg-#{$context}-#{$semantic}: var(--clr-#{$value});
             }
           }
         }
       }
+      // Foreground-colors
+      @each $context, $semantic-map in $foreground-colors {
+        @each $semantic, $mode-map in $semantic-map {
+          @each $mode, $value in $mode-map {
+            @if $mode == $theme {
+              --fg-#{$context}-#{$semantic}: var(--clr-#{$value});
+            }
+          }
+        }
+      }
+      // Border-colors
+      @each $semantic, $mode-map in $border-colors {
+        @each $mode, $value in $mode-map {
+          @if $mode == $theme {
+            --bc-#{$semantic}: var(--clr-#{$value});
+          }
+        }
+      }
+      // Box-shadows
+      @each $semantic, $mode-map in $box-shadow-colors {
+        @each $mode, $value in $mode-map {
+          @if $mode == $theme {
+            --clr-bs-#{$semantic}: #{$value};
+          }
+        }
+      }
+      // Button-colors
+      @each $variant, $state-map in $button-colors {
+        @each $state, $role-map in $state-map {
+          @each $role, $mode-map in $role-map {
+            @each $mode, $value in $mode-map {
+              @if $mode == $theme {
+                --btn-#{$variant}-#{$state}-#{$role}: var(--clr-#{$value});
+              }
+            }
+          }
+        }
+      }
+      // Color-scheme
+      color-scheme: #{$theme};
     }
-    // Color-scheme
-    color-scheme: #{$theme};
   }
 
-  // Theme
+  // Brand
   @each $brand, $key-map in $color-core-brand {
     @if $brand == $default-brand {
       @each $key, $value in $key-map {

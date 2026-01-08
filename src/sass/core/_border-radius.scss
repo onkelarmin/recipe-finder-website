@@ -3,21 +3,27 @@
 @use "sass:map";
 
 // Border-radius
-$border-radius-sm-min: 12px;
+$border-radius-xs-min: 4px;
+$border-radius-xs-max: 4px;
+$border-radius-sm-min: 4px;
 $border-radius-sm-max: 12px;
 $border-radius-md-min: 10px;
-$border-radius-md-max: 20px;
-$border-radius-lg-min: 20px;
-$border-radius-lg-max: 20px;
+$border-radius-md-max: 10px;
+$border-radius-lg-min: 10px;
+$border-radius-lg-max: 16px;
+$border-radius-xl-min: 12px;
+$border-radius-xl-max: 12px;
+$border-radius-2xl-min: 12px;
+$border-radius-2xl-max: 20px;
+$border-radius-3xl-min: 16px;
+$border-radius-3xl-max: 16px;
 
 $border-radius: (
+  xs: fluid($border-radius-xs-min, $border-radius-xs-max),
   sm: fluid($border-radius-sm-min, $border-radius-sm-max),
-  md:
-    fluid(
-      $border-radius-md-min,
-      $border-radius-md-max,
-      $viewport-min,
-      map.get($breakpoints, "medium")
-    ),
+  md: fluid($border-radius-md-min, $border-radius-md-max),
   lg: fluid($border-radius-lg-min, $border-radius-lg-max),
+  xl: fluid($border-radius-xl-min, $border-radius-xl-max),
+  2xl: fluid($border-radius-2xl-min, $border-radius-2xl-max),
+  3xl: fluid($border-radius-3xl-min, $border-radius-3xl-max),
 );

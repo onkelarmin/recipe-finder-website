@@ -5,10 +5,10 @@
 // Page padding
 $padding-page-inline-min: 16px;
 $padding-page-inline-max: 32px;
-$padding-page-block-start-min: 24px;
-$padding-page-block-start-max: 40px;
-$padding-page-block-end-min: 64px;
-$padding-page-block-end-max: 64px;
+// $padding-page-block-start-min: 24px;
+// $padding-page-block-start-max: 40px;
+$padding-page-block-end-min: 20px;
+$padding-page-block-end-max: 40px;
 
 $padding-page: (
   inline-start:
@@ -25,31 +25,45 @@ $padding-page: (
       $viewport-min,
       map.get($breakpoints, "medium")
     ),
-  block-start:
+  block-end:
     fluid(
-      $padding-page-block-start-min,
-      $padding-page-block-start-max,
-      map.get($breakpoints, "large"),
-      $viewport-max
+      $padding-page-block-end-min,
+      $padding-page-block-end-max,
+      $viewport-min,
+      map.get($breakpoints, "medium")
     ),
-  block-end: fluid($padding-page-block-end-min, $padding-page-block-end-max),
 );
 
 // Section padding
-$padding-section-md-min: 40px;
-$padding-section-md-max: 64px;
+$padding-section-xs-min: 48px;
+$padding-section-xs-max: 64px;
+$padding-section-sm-min: 48px;
+$padding-section-sm-max: 80px;
+$padding-section-md-min: 48px;
+$padding-section-md-max: 96px;
+$padding-section-lg-min: 64px;
+$padding-section-lg-max: 96px;
 
 $padding-section: (
-  md: fluid($padding-section-md-min, $padding-section-md-max),
+  xs:
+    fluid(
+      $padding-section-xs-min,
+      $padding-section-xs-max,
+      map.get($breakpoints, "medium"),
+      $viewport-max
+    ),
+  sm: fluid($padding-section-sm-min, $padding-section-xs-max),
+  md: fluid($padding-section-md-min, $padding-section-xs-max),
+  lg: fluid($padding-section-lg-min, $padding-section-xs-max),
 );
 
 // Container padding
 $padding-container-sm-min: 8px;
-$padding-container-sm-max: 12px;
-$padding-container-md-min: 12px;
-$padding-container-md-max: 16px;
-$padding-container-lg-min: 20px;
-$padding-container-lg-max: 20px;
+$padding-container-sm-max: 8px;
+$padding-container-md-min: 10px;
+$padding-container-md-max: 10px;
+$padding-container-lg-min: 16px;
+$padding-container-lg-max: 16px;
 
 $padding-container: (
   sm: fluid($padding-container-sm-min, $padding-container-sm-max),
@@ -58,35 +72,41 @@ $padding-container: (
 );
 
 // Container spacing
-$spacer-container-sm-min: 8px;
-$spacer-container-sm-max: 8px;
-$spacer-container-md-min: 12px;
-$spacer-container-md-max: 12px;
-$spacer-container-lg-min: 16px;
-$spacer-container-lg-max: 16px;
-$spacer-container-xl-min: 24px;
-$spacer-container-xl-max: 24px;
+$spacer-container-sm-min: 20px;
+$spacer-container-sm-max: 20px;
+$spacer-container-md-min: 24px;
+$spacer-container-md-max: 32px;
+$spacer-container-lg-min: 32px;
+$spacer-container-lg-max: 32px;
 
 $spacer-container: (
   sm: fluid($spacer-container-sm-min, $spacer-container-sm-max),
-  md: fluid($spacer-container-md-min, $spacer-container-md-max),
+  md:
+    fluid(
+      $spacer-container-md-min,
+      $spacer-container-md-max,
+      $viewport-min,
+      map.get($breakpoints, "medium")
+    ),
   lg: fluid($spacer-container-lg-min, $spacer-container-lg-max),
-  xl: fluid($spacer-container-xl-min, $spacer-container-xl-max),
 );
 
 // Selectable padding
-$padding-selectable-xs-min: 8px;
-$padding-selectable-xs-max: 8px;
-$padding-selectable-sm-min: 14px;
-$padding-selectable-sm-max: 14px;
+$padding-selectable-xs-min: 10px;
+$padding-selectable-xs-max: 10px;
+$padding-selectable-sm-min: 12px;
+$padding-selectable-sm-max: 12px;
 $padding-selectable-md-min: 16px;
 $padding-selectable-md-max: 16px;
-$padding-selectable-lg-min: 20px;
-$padding-selectable-lg-max: 20px;
+$padding-selectable-lg-min: 24px;
+$padding-selectable-lg-max: 24px;
+$padding-selectable-xl-min: 32px;
+$padding-selectable-xl-max: 32px;
 
 $padding-selectable: (
   xs: fluid($padding-selectable-xs-min, $padding-selectable-xs-max),
   sm: fluid($padding-selectable-sm-min, $padding-selectable-sm-max),
   md: fluid($padding-selectable-md-min, $padding-selectable-md-max),
   lg: fluid($padding-selectable-lg-min, $padding-selectable-lg-max),
+  xl: fluid($padding-selectable-xl-min, $padding-selectable-xl-max),
 );

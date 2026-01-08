@@ -1,13 +1,8 @@
 body {
-  font: var(--font-5);
-  letter-spacing: var(--ls-md);
+  font: var(--font-6);
+  letter-spacing: var(--ls-lg);
   color: var(--fg-text-base);
-  background-image: linear-gradient(
-    180deg,
-    var(--bg-canvas-gradient-start),
-    var(--bg-canvas-gradient-end)
-  );
-  padding-block-start: var(--pad-page-block-start);
+  background-color: var(--bg-canvas-default);
   padding-block-end: var(--pad-page-block-end);
 }
 

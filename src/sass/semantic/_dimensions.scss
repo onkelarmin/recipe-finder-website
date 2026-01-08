@@ -1,4 +1,6 @@
 @use "../core" as *;
+@use "sass:list";
+@use "sass:map";
 
 :root {
   // Breakpoints
@@ -9,6 +11,10 @@
   // Wrapper max-widths
   @each $size, $value in $wrapper-sizes {
     --size-wrapper-#{$size}: #{px-to-rem($value)};
+  }
+
+  @each $size, $value in $static-sizes {
+    --size-#{$size}: #{px-to-rem($value)};
   }
 
   // Logo
@@ -51,5 +57,26 @@
   // Container spacing
   @each $size, $value in $spacer-container {
     --space-cont-#{$size}: #{$value};
+  }
+
+  // Breakpoint-specific sizes
+  @function get-breakpoint-specific-name($list) {
+    @return #{list.nth($list, 1)}-#{list.nth($list, 2)}-#{list.nth($list, 3)};
+  }
+  @each $size-list in $breakpoint-specific-sizes {
+    $name: get-breakpoint-specific-name($size-list);
+    --size-#{$name}: #{list.nth($size-list, 1)};
+  }
+  @each $size-list in $breakpoint-specific-sizes {
+    $name: get-breakpoint-specific-name($size-list);
+    @media (min-width: #{px-to-em(map.get($breakpoints, "medium"))}) {
+      --size-#{$name}: #{list.nth($size-list, 2)};
+    }
+  }
+  @each $size-list in $breakpoint-specific-sizes {
+    $name: get-breakpoint-specific-name($size-list);
+    @media (min-width: #{px-to-em(map.get($breakpoints, "large"))}) {
+      --size-#{$name}: #{list.nth($size-list, 3)};
+    }
   }
 }

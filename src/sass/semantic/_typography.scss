@@ -1,8 +1,11 @@
 @use "../core" as *;
+@use "sass:map";
 
 :root {
   // Font-family
-  --ff-base: "NotoSans", system-ui, sans-serif;
+  @each $semantic, $value in $font-family {
+    --ff-#{$semantic}: #{$value};
+  }
 
   // Font-sizes
   @each $category, $size-map in $font-sizes {
@@ -17,23 +20,19 @@
   }
 
   // Line-height
-  --lh-sm: 1;
-  --lh-md: 1.2;
-  --lh-lg: 1.4;
+  @each $size, $value in $line-heights {
+    --lh-#{$size}: #{$value};
+  }
 
   // Letter-spacing
-  --ls-sm: -0.0625em; // -1px
-  --ls-md: -0.03125em; // -0.5px
-  --ls-lg: -0.001875em; // -0.3px
-  --ls-xl: -0.00125em; // -0.2px
+  @each $size, $value in $letter-spacing {
+    --ls-#{$size}: #{$value};
+  }
 
-  --font-1: var(--fw-bold) var(--fs-title-lg) / var(--lh-sm) var(--ff-base);
-  --font-2: var(--fw-bold) var(--fs-title-md) / var(--lh-md) var(--ff-base);
-  --font-3: var(--fw-regular) var(--fs-interface-lg) / var(--lh-lg)
-    var(--ff-base);
-  --font-4: var(--fw-medium) var(--fs-interface-lg) / var(--lh-lg)
-    var(--ff-base);
-  --font-5: var(--fw-regular) var(--fs-body-md) / var(--lh-lg) var(--ff-base);
-  --font-6: var(--fw-medium) var(--fs-interface-md) / var(--lh-lg)
-    var(--ff-base);
+  @each $name, $property-map in $fonts {
+    --font-#{$name}: var(--fw-#{map.get($property-map, "weight")})
+      var(--fs-#{map.get($property-map, "size")}) /
+      var(--lh-#{map.get($property-map, "line-height")})
+      var(--ff-#{map.get($property-map, "family")});
+  }
 }
