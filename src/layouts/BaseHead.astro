@@ -5,10 +5,11 @@ import type { HTMLAttributes } from "astro/types";
 interface Props extends HTMLAttributes<"head"> {
   title: string;
   description: string;
-  metaImage: string;
+  ogImage: string;
 }
 
-const { title, description, metaImage } = Astro.props;
+const { title, description, ogImage } = Astro.props;
+const siteUrl = import.meta.env.SITE;
 ---
 
 <head>
@@ -38,7 +39,7 @@ const { title, description, metaImage } = Astro.props;
   <meta property="og:url" content={Astro.url} />
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
-  <meta property="og:image" content={metaImage} />
+  <meta property="og:image" content={`${siteUrl}${ogImage}`} />
   <meta property="og:image:alt" content={title} />
 
   <!-- Twitter -->
@@ -46,6 +47,6 @@ const { title, description, metaImage } = Astro.props;
   <meta property="twitter:url" content={Astro.url} />
   <meta property="twitter:title" content={title} />
   <meta property="twitter:description" content={description} />
-  <meta property="twitter:image" content={metaImage} />
+  <meta property="twitter:image" content={`${siteUrl}${ogImage}`} />
   <meta property="twitter:image:alt" content={title} />
 </head>
