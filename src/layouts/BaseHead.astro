@@ -1,21 +1,14 @@
 ---
-// Import base Data
-import { baseData } from "@/data/siteData";
-
 // Type imports
 import type { HTMLAttributes } from "astro/types";
 
 interface Props extends HTMLAttributes<"head"> {
-  title?: string;
-  description?: string;
-  image?: string;
+  title: string;
+  description: string;
+  metaImage: string;
 }
 
-const {
-  title = baseData.title,
-  description = baseData.description,
-  image,
-} = Astro.props;
+const { title, description, metaImage } = Astro.props;
 ---
 
 <head>
@@ -38,13 +31,6 @@ const {
   <script is:inline>
     // add js class to HTML
     document.documentElement.classList.add("js");
-    // Set Light/Dark mode
-    (() => {
-      const stored = localStorage.getItem("theme-preference");
-      const system = window.matchMedia("(prefers-color-scheme: dark)").matches;
-      const theme = stored ?? (system ? "dark" : "light");
-      document.documentElement.dataset.theme = theme;
-    })();
   </script>
 
   <!-- Open Graph / Facebook -->
@@ -52,7 +38,7 @@ const {
   <meta property="og:url" content={Astro.url} />
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
-  <meta property="og:image" content={image} />
+  <meta property="og:image" content={metaImage} />
   <meta property="og:image:alt" content={title} />
 
   <!-- Twitter -->
@@ -60,6 +46,6 @@ const {
   <meta property="twitter:url" content={Astro.url} />
   <meta property="twitter:title" content={title} />
   <meta property="twitter:description" content={description} />
-  <meta property="twitter:image" content={image} />
+  <meta property="twitter:image" content={metaImage} />
   <meta property="twitter:image:alt" content={title} />
 </head>

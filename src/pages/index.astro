@@ -1,40 +1,17 @@
 ---
-import Wrapper from "@/components/utilities/Wrapper.astro";
+// Import Site data
+import { sitePages } from "@/data/siteData";
+
+// Layout import
 import MainLayout from "@layouts/MainLayout.astro";
+
+const page = sitePages.home;
 ---
 
-<MainLayout>
-  <Wrapper>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, ipsum! Animi
-    a ex quaerat minima ut nobis maxime veniam, fugit, vitae impedit fugiat,
-    accusamus iste cumque quibusdam dolorum. Veniam asperiores velit obcaecati,
-    deserunt cum distinctio placeat id libero culpa iusto dolorum doloribus
-    ullam. Possimus reiciendis eaque veritatis, vitae dolore veniam accusamus
-    unde distinctio! Dolores necessitatibus maxime voluptatibus doloremque nobis
-    iusto. Quae possimus facilis quod distinctio voluptatibus aliquam at id
-    laboriosam, accusamus obcaecati provident, dicta modi corrupti, quidem nemo
-    ea nesciunt aliquid laudantium. Tenetur fugiat adipisci sapiente eligendi
-    nulla? Modi ab ipsa dolor eveniet provident, porro maxime quisquam, tempora
-    eius adipisci, cum fugit ad dolore iste eligendi natus consectetur corrupti.
-    Animi sequi facere alias unde maxime et aut maiores, molestiae quos quod
-    harum eveniet autem dolor illo quis at minus iste sapiente odio temporibus
-    eius vitae itaque. Amet quam adipisci, harum, voluptatem quibusdam
-    voluptates odit illum dicta nisi rem optio possimus cum et a ab eos. Ex
-    molestiae ratione et dolore deleniti corporis voluptate. Ea iste fugiat
-    error voluptatum temporibus dolores. Dignissimos harum modi distinctio,
-    repellendus cum soluta voluptas ullam voluptates quia eius ipsa minus.
-    Similique minus quod sapiente ex eaque, autem aperiam nostrum sequi ad
-    ratione consequuntur quae voluptates neque amet eius ea at excepturi
-    deleniti consectetur magnam maiores ab nam dignissimos voluptate. Tenetur
-    sint fugit voluptatibus dolorum deleniti corrupti commodi? Fugit laborum
-    culpa molestias excepturi est a amet nulla porro recusandae dolore voluptas
-    eum necessitatibus, officiis voluptatibus quaerat corrupti similique.
-    Mollitia voluptate nihil esse ipsa ex optio dolorum non soluta, ipsum enim
-    sit nam dolor maxime delectus? Obcaecati voluptatem officiis autem nulla
-    eius, repudiandae aliquam quam blanditiis deleniti saepe mollitia non
-    deserunt, hic dolorem libero nam sapiente delectus illo ipsum tenetur rerum
-    odio? Pariatur, ipsum magni magnam deleniti neque, impedit numquam fugiat
-    similique, nisi in nostrum voluptas dolorum fuga.
-  </Wrapper>
+<MainLayout
+  title={page.title}
+  description={page.description}
+  metaImage={page.metaImage}
+>
   Main
 </MainLayout>

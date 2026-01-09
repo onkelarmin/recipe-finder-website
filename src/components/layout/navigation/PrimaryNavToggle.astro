@@ -1,0 +1,79 @@
+---
+type Props = {
+  width: string;
+  lineHeight: string;
+  gap: string;
+
+  borderRadius?: string;
+};
+
+const { width, lineHeight, gap, borderRadius = "0" } = Astro.props;
+---
+
+<button
+  id="btnToggle"
+  aria-label="Open and Close Navigation"
+  aria-expanded="false"
+  aria-controls="primary-nav__menu"
+>
+  <span class="line line-1"></span>
+  <span class="line line-2"></span>
+  <span class="line line-3"></span>
+</button>
+
+<style lang="scss" define:vars={{ width, lineHeight, gap, borderRadius }}>
+  @use "../../sass/semantic" as *;
+  @use "../../sass/components" as *;
+
+  button {
+    display: none;
+
+    &:focus {
+      outline: 0px solid transparent;
+    }
+
+    &:focus-visible {
+      outline: $button-border-width-primary solid
+        $button-color-primary-border-hover;
+      outline-offset: calc($button-border-width-primary * 2);
+    }
+
+    @include mq(medium, max) {
+      display: grid;
+      position: relative;
+      z-index: 1;
+      gap: var(--gap);
+      width: var(--width);
+      background: none;
+      border: none;
+      cursor: pointer;
+
+      .line {
+        width: 100%;
+        height: var(--lineHeight);
+        background-color: $color-fg-icon-neutral;
+        border-radius: var(--borderRadius);
+        transition:
+          transform 300ms ease-in,
+          opacity 150ms ease-in 150ms;
+      }
+
+      &[aria-expanded="true"] {
+        .line-1 {
+          transform: translateY(calc(var(--gap) + var(--lineHeight)))
+            rotate(-225deg);
+        }
+
+        .line-2 {
+          opacity: 0;
+          transition: opacity 150ms ease-in;
+        }
+
+        .line-3 {
+          transform: translateY(calc((var(--gap) + var(--lineHeight)) * -1))
+            rotate(225deg);
+        }
+      }
+    }
+  }
+</style>

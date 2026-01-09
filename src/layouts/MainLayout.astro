@@ -6,19 +6,21 @@ import "@sass/main.scss";
 import type { HTMLAttributes } from "astro/types";
 
 // Component imports
-import BaseHead from "../components/atomic/BaseHead.astro";
-import SkipNavLink from "@/components/utilities/SkipNavLink.astro";
+import BaseHead from "@layouts/BaseHead.astro";
+import SkipNavLink from "@/components/layout/SkipNavLink.astro";
+import Header from "@/components/layout/Header.astro";
 
 interface Props extends HTMLAttributes<"html"> {
-  title?: string;
-  description?: string;
-  image?: string;
+  title: string;
+  description: string;
+  metaImage: string;
 }
 ---
 
 <html lang="en">
   <BaseHead {...Astro.props} />
   <SkipNavLink />
+  <Header />
   <body data-brand="primary">
     <main id="main">
       <slot />

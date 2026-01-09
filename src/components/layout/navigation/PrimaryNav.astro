@@ -1,0 +1,162 @@
+---
+// Components
+import ButtonLink from "../atomic/ButtonLink.astro";
+import NavLink from "../atomic/NavLink.astro";
+import PrimaryNavToggle from "./PrimaryNavToggle.astro";
+---
+
+<nav class="primary-nav">
+  <PrimaryNavToggle
+    width="28px"
+    lineHeight="3px"
+    gap="5px"
+    borderRadius="5px"
+  />
+  <div
+    id="primary-nav__menu"
+    class="primary-nav__menu"
+    aria-label="Navigation"
+    role="dialog"
+    data-open="false"
+  >
+    <ul class="primary-nav__list">
+      <li><NavLink linkTo="section" link="about" /></li>
+      <li><NavLink linkTo="section" link="capabilities" /></li>
+      <li><NavLink linkTo="section" link="heritage" /></li>
+      <li>
+        <ButtonLink href="#contact" theme="tertiary" text="Contact" />
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Overlay -->
+<div id="mobile-nav-overlay" aria-hidden="true"></div>
+
+<style lang="scss">
+  .primary-nav {
+    position: relative;
+    z-index: 10;
+    &__list {
+      display: flex;
+      align-items: center;
+      gap: $spacer-container-xl;
+      list-style: none;
+    }
+
+    // Mobile
+    @include mq(medium, max) {
+      &__menu {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 65%;
+        contain: paint;
+        transform: translateX(100vw);
+        transition: 0.5s ease-in-out;
+
+        &[data-open="true"] {
+          transform: translateX(0);
+        }
+      }
+
+      &__list {
+        height: 100%;
+        flex-direction: column;
+        align-items: start;
+        gap: $spacer-container-2xl;
+        background-color: $color-bg-container-navigation;
+        backdrop-filter: blur(16px);
+        border-inline-start: 1px solid $color-border-mobile-menu;
+        padding: 6rem 2.5rem 1.5rem 2.5rem;
+      }
+    }
+  }
+
+  // Overlay
+  #mobile-nav-overlay {
+    display: none;
+    background-color: $color-effect-overlay-mobile-nav;
+    position: fixed;
+    inset: 0;
+    z-index: 9;
+  }
+
+  .primary-nav:has([data-open="true"]) ~ #mobile-nav-overlay {
+    display: block;
+  }
+</style>
+
+<script>
+  // Variables
+  const btnToggle = document.querySelector("#btnToggle") as HTMLButtonElement;
+  const primaryNav = document.querySelector(".primary-nav") as HTMLElement;
+  const primaryNavMenu = primaryNav.querySelector(
+    ".primary-nav__menu"
+  ) as HTMLElement;
+  const primaryNavLinks = [
+    ...primaryNavMenu.querySelectorAll("li > a"),
+  ] as HTMLAnchorElement[];
+  const mobileNavOverlay = document.querySelector(
+    "#mobile-nav-overlay"
+  ) as HTMLDivElement;
+  const main = document.querySelector("main") as HTMLElement;
+  const media = window.matchMedia("(width < 45em)");
+  const isMobile = media.matches;
+
+  // Functions
+  function setupPrimaryNav(isMobile: boolean) {
+    if (isMobile) {
+      // is mobile
+      primaryNavMenu.setAttribute("inert", "");
+      primaryNavMenu.style.transition = "none";
+      primaryNavLinks.forEach((link) => {
+        link.addEventListener("click", closeMobileMenu);
+      });
+    } else {
+      // is tablet/desktop
+      primaryNavMenu.removeAttribute("inert");
+    }
+  }
+
+  function openMobileMenu() {
+    btnToggle.setAttribute("aria-expanded", "true");
+    primaryNavMenu.setAttribute("data-open", "true");
+    primaryNavMenu.removeAttribute("inert");
+    primaryNavMenu.removeAttribute("style");
+    main.setAttribute("inert", "");
+    document.addEventListener("keydown", closeMenuOnEscapeKey);
+  }
+
+  function closeMobileMenu() {
+    btnToggle.setAttribute("aria-expanded", "false");
+    primaryNavMenu.setAttribute("data-open", "false");
+    primaryNavMenu.setAttribute("inert", "");
+    main.removeAttribute("inert");
+    document.removeEventListener("keydown", closeMenuOnEscapeKey);
+
+    setTimeout(() => {
+      primaryNavMenu.style.transition = "none";
+    }, 500);
+  }
+
+  function closeMenuOnEscapeKey(e: KeyboardEvent) {
+    if (e.key === "Escape") closeMobileMenu();
+  }
+
+  setupPrimaryNav(isMobile);
+
+  // EventListeners
+  btnToggle.addEventListener("click", () => {
+    if (btnToggle.getAttribute("aria-expanded") === "false") {
+      openMobileMenu();
+    } else {
+      closeMobileMenu();
+    }
+  });
+  mobileNavOverlay.addEventListener("click", closeMobileMenu);
+  media.addEventListener("change", (e) => {
+    setupPrimaryNav(e.matches);
+  });
+</script>
