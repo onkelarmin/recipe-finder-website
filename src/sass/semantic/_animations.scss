@@ -2,6 +2,7 @@
 @use "sass:map";
 
 :root {
+  // Durations
   @each $speed, $value in $animation-durations {
     --motion-#{$speed}: #{$value};
     --motion-#{$speed}-sensitive: #{$value};
@@ -14,6 +15,20 @@
     }
   }
 
+  // Delays
+  @each $speed, $value in $animation-delays {
+    --delay-#{$speed}: #{$value};
+    --delay-#{$speed}-sensitive: #{$value};
+  }
+
+  // Prefers-reduced-motion
+  @media (prefers-reduced-motion: reduce) {
+    @each $speed, $value in $animation-durations {
+      --delay-#{$speed}-sensitive: 0ms;
+    }
+  }
+
+  // Easing
   @each $ease, $value in $animation-easings {
     --ease-#{$ease}: #{$value};
   }

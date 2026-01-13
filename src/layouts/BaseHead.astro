@@ -2,6 +2,7 @@
 // Type imports
 import type { HTMLAttributes } from "astro/types";
 
+// Props
 interface Props extends HTMLAttributes<"head"> {
   title: string;
   description: string;
@@ -9,6 +10,7 @@ interface Props extends HTMLAttributes<"head"> {
 }
 
 const { title, description, ogImage } = Astro.props;
+
 const siteUrl = import.meta.env.SITE;
 ---
 

@@ -1,79 +1,82 @@
 ---
-type Props = {
-  width: string;
-  lineHeight: string;
-  gap: string;
 
-  borderRadius?: string;
-};
-
-const { width, lineHeight, gap, borderRadius = "0" } = Astro.props;
 ---
 
 <button
-  id="btnToggle"
+  id="primary-nav-toggle"
   aria-label="Open and Close Navigation"
   aria-expanded="false"
-  aria-controls="primary-nav__menu"
+  aria-controls="primary-nav-menu"
 >
   <span class="line line-1"></span>
   <span class="line line-2"></span>
   <span class="line line-3"></span>
 </button>
 
-<style lang="scss" define:vars={{ width, lineHeight, gap, borderRadius }}>
-  @use "../../sass/semantic" as *;
-  @use "../../sass/components" as *;
+<style lang="scss">
+  @use "@sass/miscellaneous" as *;
 
   button {
-    display: none;
+    width: var(--nav-toggle-width);
+    height: var(--nav-toggle-height);
+    display: grid;
+    place-content: center;
+    gap: var(--nav-toggle-line-gap);
+    position: relative;
+    z-index: 1;
+    background-color: var(--nav-toggle-bg-color-idle);
+    border-style: solid;
+    border-width: var(--nav-toggle-border-width);
+    border-color: var(--nav-toggle-border-color-idle);
+    border-radius: var(--nav-toggle-border-radius);
+    cursor: pointer;
+
+    .line {
+      width: var(--nav-toggle-line-width);
+      height: var(--nav-toggle-line-height);
+      background-color: var(--nav-toggle-fg-color-idle);
+      border-radius: var(--br-pill);
+      transition:
+        transform var(--motion-default-sensitive) var(--ease-in-out),
+        opacity var(--motion-fast-sensitive) var(--ease-out)
+          var(--delay-fast-sensitive);
+    }
 
     &:focus {
       outline: 0px solid transparent;
     }
 
     &:focus-visible {
-      outline: $button-border-width-primary solid
-        $button-color-primary-border-hover;
-      outline-offset: calc($button-border-width-primary * 2);
+      outline: var(--nav-toggle-outline-width) solid
+        var(--nav-toggle-outline-color-focus);
+      outline-offset: var(--nav-toggle-offset-width);
     }
 
-    @include mq(medium, max) {
-      display: grid;
-      position: relative;
-      z-index: 1;
-      gap: var(--gap);
-      width: var(--width);
-      background: none;
-      border: none;
-      cursor: pointer;
-
-      .line {
-        width: 100%;
-        height: var(--lineHeight);
-        background-color: $color-fg-icon-neutral;
-        border-radius: var(--borderRadius);
-        transition:
-          transform 300ms ease-in,
-          opacity 150ms ease-in 150ms;
+    &[aria-expanded="true"] {
+      .line-1 {
+        transform: translateY(
+            calc(var(--nav-toggle-line-gap) + var(--nav-toggle-line-height))
+          )
+          rotate(-225deg);
       }
 
-      &[aria-expanded="true"] {
-        .line-1 {
-          transform: translateY(calc(var(--gap) + var(--lineHeight)))
-            rotate(-225deg);
-        }
-
-        .line-2 {
-          opacity: 0;
-          transition: opacity 150ms ease-in;
-        }
-
-        .line-3 {
-          transform: translateY(calc((var(--gap) + var(--lineHeight)) * -1))
-            rotate(225deg);
-        }
+      .line-2 {
+        opacity: 0;
+        transition: opacity var(--motion-fast-sensitive) var(--ease-in);
       }
+
+      .line-3 {
+        transform: translateY(
+            calc(
+              (var(--nav-toggle-line-gap) + var(--nav-toggle-line-height)) * -1
+            )
+          )
+          rotate(225deg);
+      }
+    }
+
+    @include mq(large) {
+      display: none;
     }
   }
 </style>

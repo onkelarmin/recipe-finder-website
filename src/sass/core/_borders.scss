@@ -1,26 +1,24 @@
 $border-widths: (
+  none: 0px,
   sm: 1px,
   md: 2px,
   lg: 3px,
 );
 
 $border-colors: (
-  divider: (
+  default: (
     light: "neutral-300",
   ),
   card: (
     light: "neutral-300",
   ),
-  skip-nav-link: (
-    light: "neutral-900",
-  ),
 );
 
 $borders: (
-  divider: (
+  default: (
     width: "sm",
     style: "solid",
-    color: "divider",
+    color: "default",
   ),
   card: (
     width: "sm",

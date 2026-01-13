@@ -3,113 +3,12 @@
 @if $has-themes {
   // Light-mode
   [data-theme="light"] {
-    $theme: "light";
-    //  Background-colors
-    @each $context, $semantic-map in $background-colors {
-      @each $semantic, $mode-map in $semantic-map {
-        @each $mode, $value in $mode-map {
-          @if $mode == $theme {
-            --bg-#{$context}-#{$semantic}: var(--clr-#{$value});
-          }
-        }
-      }
-    }
-    // Foreground-colors
-    @each $context, $semantic-map in $foreground-colors {
-      @each $semantic, $mode-map in $semantic-map {
-        @each $mode, $value in $mode-map {
-          @if $mode == $theme {
-            --fg-#{$context}-#{$semantic}: var(--clr-#{$value});
-          }
-        }
-      }
-    }
-    // Border-colors
-    @each $semantic, $mode-map in $border-colors {
-      @each $mode, $value in $mode-map {
-        @if $mode == $theme {
-          --bc-#{$semantic}: var(--clr-#{$value});
-        }
-      }
-    }
-    // Box-shadows
-    @each $semantic, $mode-map in $box-shadow-colors {
-      @each $mode, $value in $mode-map {
-        @if $mode == $theme {
-          --clr-bs-#{$semantic}: #{$value};
-        }
-      }
-    }
-    // Button-colors
-    @each $variant, $state-map in $button-colors {
-      @each $state, $role-map in $state-map {
-        @each $role, $mode-map in $role-map {
-          @each $mode, $value in $mode-map {
-            @if $mode == $theme {
-              --btn-#{$variant}-#{$state}-#{$role}: var(--clr-#{$value});
-            }
-          }
-        }
-      }
-    }
-
-    // Color-scheme
-    color-scheme: #{$theme};
+    @include theme-vars(light);
   }
 
   // Dark mode
   [data-theme="dark"] {
-    $theme: "dark";
-    //  Background-colors
-    @each $context, $semantic-map in $background-colors {
-      @each $semantic, $mode-map in $semantic-map {
-        @each $mode, $value in $mode-map {
-          @if $mode == $theme {
-            --bg-#{$context}-#{$semantic}: var(--clr-#{$value});
-          }
-        }
-      }
-    }
-    // Foreground-colors
-    @each $context, $semantic-map in $foreground-colors {
-      @each $semantic, $mode-map in $semantic-map {
-        @each $mode, $value in $mode-map {
-          @if $mode == $theme {
-            --fg-#{$context}-#{$semantic}: var(--clr-#{$value});
-          }
-        }
-      }
-    }
-    // Border-colors
-    @each $semantic, $mode-map in $border-colors {
-      @each $mode, $value in $mode-map {
-        @if $mode == $theme {
-          --bc-#{$semantic}: var(--clr-#{$value});
-        }
-      }
-    }
-    // Box-shadows
-    @each $semantic, $mode-map in $box-shadow-colors {
-      @each $mode, $value in $mode-map {
-        @if $mode == $theme {
-          --clr-bs-#{$semantic}: #{$value};
-        }
-      }
-    }
-    // Button-colors
-    @each $variant, $state-map in $button-colors {
-      @each $state, $role-map in $state-map {
-        @each $role, $mode-map in $role-map {
-          @each $mode, $value in $mode-map {
-            @if $mode == $theme {
-              --btn-#{$variant}-#{$state}-#{$role}: var(--clr-#{$value});
-            }
-          }
-        }
-      }
-    }
-    // Color-scheme
-    color-scheme: #{$theme};
+    @include theme-vars(dark);
   }
 }
 

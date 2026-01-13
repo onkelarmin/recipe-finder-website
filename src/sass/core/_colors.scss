@@ -1,6 +1,5 @@
 // Primitives
 $color-core-neutral: (
-  "transparent": transparent,
   "000": #ffffff,
   "100": #f6f5f1,
   "200": #e0e6e3,
@@ -59,17 +58,19 @@ $background-colors: (
     default: (
       light: "neutral-000",
     ),
+    header: (
+      light: "neutral-100",
+    ),
     cta: (
       light: "neutral-200",
     ),
-    hamburger: (
+  ),
+  mobile-nav: (
+    menu: (
       light: "neutral-000",
     ),
-    mobile-nav: (
-      light: "neutral-000",
-    ),
-    skip-nav-link: (
-      light: "neutral-000",
+    overlay: (
+      light: "transparent",
     ),
   ),
   text: (
@@ -109,82 +110,6 @@ $foreground-colors: (
   icon: (
     default: (
       light: "neutral-900",
-    ),
-  ),
-);
-
-// Button-colors
-$button-colors: (
-  default: (
-    idle: (
-      bg: (
-        light: "neutral-900",
-      ),
-      fg: (
-        light: "neutral-000",
-      ),
-    ),
-    hover: (
-      bg: (
-        light: "neutral-800",
-      ),
-      fg: (
-        light: "neutral-000",
-      ),
-    ),
-    focus: (
-      outline: (
-        light: "neutral-900",
-      ),
-    ),
-  ),
-  select: (
-    idle: (
-      bg: (
-        light: "neutral-000",
-      ),
-      fg: (
-        light: "neutral-900",
-      ),
-      border: (
-        light: "neutral-300",
-      ),
-    ),
-    hover: (
-      bg: (
-        light: "neutral-000",
-      ),
-      fg: (
-        light: "neutral-900",
-      ),
-      border: (
-        light: "neutral-900",
-      ),
-    ),
-    focus: (
-      bg: (
-        light: "neutral-000",
-      ),
-      fg: (
-        light: "neutral-900",
-      ),
-      offset: (
-        light: "neutral-000",
-      ),
-      outline: (
-        light: "neutral-900",
-      ),
-    ),
-    selected: (
-      bg: (
-        light: "neutral-000",
-      ),
-      fg: (
-        light: "neutral-900",
-      ),
-      border: (
-        light: "neutral-900",
-      ),
     ),
   ),
 );

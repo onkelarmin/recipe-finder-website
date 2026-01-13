@@ -5,18 +5,18 @@ $box-shadow-colors: (
   none: (
     light: "transparent",
   ),
-  // header: (
-  //   light: #d9e5f4,
-  // ),,
+  mobile-nav-menu: (
+    light: "neutral-600" 0.16,
+  ),
 );
 
 $box-shadows-offsets: (
   none: 0px 0px 0px 0px,
-  // header: 0px 2px 3px 0px,
+  mobile-nav-menu: 0px 12px 22px -12px,
 );
 
 $box-shadows: (
-  // header: (
-  //   var(--bs-header),
-  // ),
+  mobile-nav-menu: (
+    var(--bs-mobile-nav-menu),
+  ),
 );

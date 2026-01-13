@@ -5,15 +5,11 @@ import { sitePages } from "@/data/siteData";
 // Layout import
 import MainLayout from "@layouts/MainLayout.astro";
 
-const page = sitePages.home;
+const page = sitePages.about;
 ---
 
 <MainLayout
   title={page.title}
   description={page.description}
   ogImage={page.ogImage}
->
-  Main
-</MainLayout>
-
-<style lang="scss"></style>
+/>

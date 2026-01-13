@@ -1,10 +1,48 @@
 ---
-import Wrapper from "../utilities/Wrapper.astro";
-import PrimaryNav from "./navigation/PrimaryNav.astro";
+// Integrations
+import { Icon } from "astro-icon/components";
+
+// Component imports
+import Wrapper from "@components/utilities/Wrapper.astro";
+import PrimaryNav from "@components/layout/navigation/PrimaryNav.astro";
 ---
 
 <header>
   <Wrapper width="wide">
-    <!-- <PrimaryNav /> -->
+    <div class="layout">
+      <a href="/"
+        ><span class="visually-hidden">Back to home</span>
+        <Icon name="logo" />
+      </a>
+      <PrimaryNav />
+    </div>
   </Wrapper>
 </header>
+
+<style lang="scss">
+  @use "@sass/miscellaneous" as *;
+
+  header {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    background-color: var(--bg-container-header);
+    padding-block-start: var(--size-16-32-20);
+    padding-block-end: var(--size-16-20-20);
+    border-block-end: var(--border-default);
+
+    .layout {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      align-items: center;
+
+      @include mq(large, max) {
+        grid-template-columns: 1fr auto;
+      }
+    }
+
+    [data-icon] {
+      width: var(--size-logo-md);
+    }
+  }
+</style>

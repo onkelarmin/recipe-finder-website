@@ -1,75 +1,117 @@
 ---
-// Components
-import ButtonLink from "../atomic/ButtonLink.astro";
-import NavLink from "../atomic/NavLink.astro";
+// Import Site data
+import { sitePages } from "@/data/siteData";
+
+// Component imports
+import ButtonLink from "@components/ui/ButtonLink.astro";
+import NavLink from "./NavLink.astro";
 import PrimaryNavToggle from "./PrimaryNavToggle.astro";
+
+const { ...rest } = Astro.props;
+
+const currentPath = Astro.url.pathname;
 ---
 
-<nav class="primary-nav">
-  <PrimaryNavToggle
-    width="28px"
-    lineHeight="3px"
-    gap="5px"
-    borderRadius="5px"
-  />
+<nav class="primary-nav" {...rest}>
+  <PrimaryNavToggle />
   <div
-    id="primary-nav__menu"
-    class="primary-nav__menu"
+    id="primary-nav-menu"
+    class="menu"
     aria-label="Navigation"
     role="dialog"
     data-open="false"
   >
-    <ul class="primary-nav__list">
-      <li><NavLink linkTo="section" link="about" /></li>
-      <li><NavLink linkTo="section" link="capabilities" /></li>
-      <li><NavLink linkTo="section" link="heritage" /></li>
-      <li>
-        <ButtonLink href="#contact" theme="tertiary" text="Contact" />
-      </li>
+    <ul class="list">
+      {
+        Object.values(sitePages).map((page) => (
+          <li>
+            <NavLink
+              href={page.url}
+              name={page.name}
+              aria-current={currentPath === page.url ? "page" : undefined}
+            />
+          </li>
+        ))
+      }
     </ul>
+    <ButtonLink href="/recipes" variant="nav" text="Browse recipes" />
   </div>
 </nav>
-
 <!-- Overlay -->
-<div id="mobile-nav-overlay" aria-hidden="true"></div>
+<div id="mobile-nav-overlay"></div>
 
 <style lang="scss">
+  @use "@sass/miscellaneous" as *;
+
   .primary-nav {
     position: relative;
     z-index: 10;
-    &__list {
+
+    .menu {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      justify-items: end;
+    }
+
+    .list {
+      justify-self: center;
       display: flex;
       align-items: center;
-      gap: $spacer-container-xl;
+      gap: var(--size-40);
       list-style: none;
     }
 
     // Mobile
-    @include mq(medium, max) {
-      &__menu {
+    @include mq(large, max) {
+      .menu {
         position: fixed;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        width: 65%;
-        contain: paint;
-        transform: translateX(100vw);
-        transition: 0.5s ease-in-out;
+        left: max(
+          (100% - var(--size-wrapper-default)) / 2,
+          var(--pad-page-inline-start)
+        );
+        right: max(
+          (100% - var(--size-wrapper-default)) / 2,
+          var(--pad-page-inline-start)
+        );
+        top: var(--size-68-86-86);
+        display: flex;
+        flex-direction: column;
+        gap: var(--size-10);
+        background-color: var(--bg-mobile-nav-menu);
+        border-radius: var(--size-8);
+        border: var(--border-default);
+        box-shadow: var(--bs-mobile-nav-menu);
+        padding: var(--size-8);
+
+        transform: translateY(-100%);
+        opacity: 0;
+        transition:
+          transform var(--motion-slow-sensitive) var(--ease-in),
+          opacity var(--motion-slow-sensitive) var(--ease-in);
+
+        .btn {
+          width: 100%;
+        }
 
         &[data-open="true"] {
-          transform: translateX(0);
+          transform: translateY(0);
+          opacity: 1;
+          transition:
+            transform var(--motion-slow-sensitive) var(--ease-out),
+            opacity var(--motion-slow) var(--ease-out);
         }
       }
 
-      &__list {
-        height: 100%;
+      .list {
         flex-direction: column;
         align-items: start;
-        gap: $spacer-container-2xl;
-        background-color: $color-bg-container-navigation;
-        backdrop-filter: blur(16px);
-        border-inline-start: 1px solid $color-border-mobile-menu;
-        padding: 6rem 2.5rem 1.5rem 2.5rem;
+        gap: 0px;
+        // backdrop-filter: blur(16px);
+
+        li {
+          padding-block: var(--size-12);
+          padding-inline: var(--size-8);
+        }
       }
     }
   }
@@ -77,10 +119,10 @@ import PrimaryNavToggle from "./PrimaryNavToggle.astro";
   // Overlay
   #mobile-nav-overlay {
     display: none;
-    background-color: $color-effect-overlay-mobile-nav;
     position: fixed;
     inset: 0;
     z-index: 9;
+    background-color: var(--bg-mobile-nav-overlay);
   }
 
   .primary-nav:has([data-open="true"]) ~ #mobile-nav-overlay {
@@ -89,11 +131,16 @@ import PrimaryNavToggle from "./PrimaryNavToggle.astro";
 </style>
 
 <script>
+  // Imports
+  import { customProp, cssTime } from "@/lib/helper";
+
   // Variables
-  const btnToggle = document.querySelector("#btnToggle") as HTMLButtonElement;
+  const btnToggle = document.querySelector(
+    "#primary-nav-toggle"
+  ) as HTMLButtonElement;
   const primaryNav = document.querySelector(".primary-nav") as HTMLElement;
   const primaryNavMenu = primaryNav.querySelector(
-    ".primary-nav__menu"
+    "#primary-nav-menu"
   ) as HTMLElement;
   const primaryNavLinks = [
     ...primaryNavMenu.querySelectorAll("li > a"),
@@ -102,7 +149,7 @@ import PrimaryNavToggle from "./PrimaryNavToggle.astro";
     "#mobile-nav-overlay"
   ) as HTMLDivElement;
   const main = document.querySelector("main") as HTMLElement;
-  const media = window.matchMedia("(width < 45em)");
+  const media = window.matchMedia(`(width < ${customProp("--bp-large")})`);
   const isMobile = media.matches;
 
   // Functions
@@ -110,7 +157,6 @@ import PrimaryNavToggle from "./PrimaryNavToggle.astro";
     if (isMobile) {
       // is mobile
       primaryNavMenu.setAttribute("inert", "");
-      primaryNavMenu.style.transition = "none";
       primaryNavLinks.forEach((link) => {
         link.addEventListener("click", closeMobileMenu);
       });
@@ -124,7 +170,6 @@ import PrimaryNavToggle from "./PrimaryNavToggle.astro";
     btnToggle.setAttribute("aria-expanded", "true");
     primaryNavMenu.setAttribute("data-open", "true");
     primaryNavMenu.removeAttribute("inert");
-    primaryNavMenu.removeAttribute("style");
     main.setAttribute("inert", "");
     document.addEventListener("keydown", closeMenuOnEscapeKey);
   }
@@ -135,10 +180,6 @@ import PrimaryNavToggle from "./PrimaryNavToggle.astro";
     primaryNavMenu.setAttribute("inert", "");
     main.removeAttribute("inert");
     document.removeEventListener("keydown", closeMenuOnEscapeKey);
-
-    setTimeout(() => {
-      primaryNavMenu.style.transition = "none";
-    }, 500);
   }
 
   function closeMenuOnEscapeKey(e: KeyboardEvent) {

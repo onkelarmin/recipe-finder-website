@@ -38,8 +38,3 @@ export const sitePages: Record<PageKey, PageData> = {
     ogImage: "og/recipes.webp",
   },
 };
-
-export const baseData = {
-  title: "This is the title",
-  description: "This is the description",
-};

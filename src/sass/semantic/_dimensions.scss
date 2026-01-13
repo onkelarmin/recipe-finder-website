@@ -65,18 +65,18 @@
   }
   @each $size-list in $breakpoint-specific-sizes {
     $name: get-breakpoint-specific-name($size-list);
-    --size-#{$name}: #{list.nth($size-list, 1)};
+    --size-#{$name}: #{px-to-rem(list.nth($size-list, 1) * 1px)};
   }
   @each $size-list in $breakpoint-specific-sizes {
     $name: get-breakpoint-specific-name($size-list);
     @media (min-width: #{px-to-em(map.get($breakpoints, "medium"))}) {
-      --size-#{$name}: #{list.nth($size-list, 2)};
+      --size-#{$name}: #{px-to-rem(list.nth($size-list, 2) * 1px)};
     }
   }
   @each $size-list in $breakpoint-specific-sizes {
     $name: get-breakpoint-specific-name($size-list);
     @media (min-width: #{px-to-em(map.get($breakpoints, "large"))}) {
-      --size-#{$name}: #{list.nth($size-list, 3)};
+      --size-#{$name}: #{px-to-rem(list.nth($size-list, 3) * 1px)};
     }
   }
 }
