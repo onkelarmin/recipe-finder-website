@@ -1,0 +1,57 @@
+---
+// Component imports
+import Wrapper from "@components/utilities/Wrapper.astro";
+import Heading from "@components/utilities/Heading.astro";
+import FeaturesListItem from "@components/ui/FeaturesListItem.astro";
+
+// Asset imports
+import WholeFoodLogo from "@icons/icon-whole-food-recipes.svg";
+import MinimumFussLogo from "@icons/icon-minimum-fuss.svg";
+import SearchLogo from "@icons/icon-search-in-seconds.svg";
+---
+
+<section aria-labelledby="features-title">
+  <Wrapper>
+    <Heading
+      tag="h2"
+      size="h2"
+      text="What you’ll get"
+      id="features-title"
+      classes="text-center-large"
+    />
+    <ul>
+      <FeaturesListItem
+        title="Whole-food recipes"
+        description="Each dish uses everyday, unprocessed ingredients."
+        logo={WholeFoodLogo}
+      />
+      <FeaturesListItem
+        title="Minimum fuss"
+        description="All recipes are designed to make eating healthy quick and easy."
+        logo={MinimumFussLogo}
+      />
+      <FeaturesListItem
+        title="Search in seconds"
+        description="Filter by name or ingredient and jump straight to the recipe you need."
+        logo={SearchLogo}
+      />
+    </ul>
+  </Wrapper>
+</section>
+
+<style lang="scss">
+  @use "@sass/miscellaneous" as *;
+  section {
+    padding-block: var(--pad-sect-lg);
+    ul {
+      display: grid;
+      gap: var(--space-cont-md);
+      list-style: none;
+      margin-block-start: var(--size-32-48-48);
+
+      @include mq(large) {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+  }
+</style>

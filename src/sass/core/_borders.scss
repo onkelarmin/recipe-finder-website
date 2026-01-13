@@ -9,6 +9,9 @@ $border-colors: (
   default: (
     light: "neutral-300",
   ),
+  feature-icon: (
+    light: "neutral-200",
+  ),
   card: (
     light: "neutral-300",
   ),
@@ -19,6 +22,11 @@ $borders: (
     width: "sm",
     style: "solid",
     color: "default",
+  ),
+  feature-icon: (
+    width: "sm",
+    style: "solid",
+    color: "feature-icon",
   ),
   card: (
     width: "sm",

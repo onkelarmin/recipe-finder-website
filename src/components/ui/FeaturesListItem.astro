@@ -1,0 +1,43 @@
+---
+// Type imports
+import type { HTMLAttributes, SvgComponent } from "astro/types";
+
+// Component imports
+import Heading from "@components/utilities/Heading.astro";
+
+// Props
+interface Props extends HTMLAttributes<"li"> {
+  title: string;
+  description: string;
+  logo: SvgComponent;
+}
+
+const { logo, title, description } = Astro.props;
+const LogoComponent = logo;
+---
+
+<li>
+  <div class="logo">
+    <LogoComponent />
+  </div>
+  <Heading tag="h3" size="h3" text={title} />
+  <p>{description}</p>
+</li>
+
+<style lang="scss">
+  .logo {
+    display: grid;
+    place-items: center;
+    width: var(--size-icon-features);
+    aspect-ratio: 1;
+    background-color: var(--bg-icon-default);
+    border: var(--border-feature-icon);
+    box-shadow: var(--bs-feature-icon);
+    border-radius: var(--size-12);
+    margin-block-end: var(--size-20-24-24);
+  }
+
+  p {
+    margin-block-start: var(--size-12);
+  }
+</style>

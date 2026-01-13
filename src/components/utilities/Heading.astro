@@ -24,7 +24,8 @@ const CustomTag = tag;
 ---
 
 <CustomTag class:list={["heading", sizes[size], classes]} {...rest}>
-  <span class="highlighted">{highlighted}</span>{text}
+  {highlighted ? <span class="highlighted">{highlighted}</span> : ""}
+  {text}
 </CustomTag>
 
 <style lang="scss">

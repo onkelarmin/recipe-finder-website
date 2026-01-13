@@ -7,6 +7,7 @@ import MainLayout from "@layouts/MainLayout.astro";
 
 // Component imports
 import HeroHome from "@/components/sections/HeroHome.astro";
+import Features from "@/components/sections/Features.astro";
 
 const page = sitePages.home;
 ---
@@ -17,6 +18,7 @@ const page = sitePages.home;
   ogImage={page.ogImage}
 >
   <HeroHome />
+  <Features />
 </MainLayout>
 
 <style lang="scss"></style>

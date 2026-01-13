@@ -107,7 +107,7 @@
   text-transform: uppercase;
 }
 
-// Centre horizontally
+// Center horizontally
 .mar-inline-auto {
   margin-inline: auto;
 }
@@ -125,6 +125,17 @@
   @include mq(large) {
     margin-inline: auto;
   }
+}
+
+// Center vertically
+.center-block {
+  align-content: center;
+}
+
+// Center children
+.grid-center {
+  display: grid;
+  place-items: center;
 }
 
 // List-style-none
@@ -277,6 +288,11 @@
 // Overflow clip
 .overflow-clip {
   overflow: clip;
+}
+
+// Square
+.square {
+  aspect-ratio: 1;
 }
 
 // GSAP auto alpha
