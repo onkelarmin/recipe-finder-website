@@ -1,10 +1,10 @@
 ---
-// Integrations
-import { Icon } from "astro-icon/components";
-
 // Component imports
 import Wrapper from "@components/utilities/Wrapper.astro";
 import PrimaryNav from "@components/layout/navigation/PrimaryNav.astro";
+
+// Asset imports
+import Logo from "@icons/logo.svg";
 ---
 
 <header>
@@ -12,7 +12,7 @@ import PrimaryNav from "@components/layout/navigation/PrimaryNav.astro";
     <div class="layout">
       <a href="/"
         ><span class="visually-hidden">Back to home</span>
-        <Icon name="logo" />
+        <Logo class="logo" />
       </a>
       <PrimaryNav />
     </div>
@@ -24,6 +24,7 @@ import PrimaryNav from "@components/layout/navigation/PrimaryNav.astro";
 
   header {
     position: sticky;
+    z-index: 1;
     top: 0;
     width: 100%;
     background-color: var(--bg-container-header);
@@ -41,7 +42,8 @@ import PrimaryNav from "@components/layout/navigation/PrimaryNav.astro";
       }
     }
 
-    [data-icon] {
+    .logo {
+      display: block;
       width: var(--size-logo-md);
     }
   }

@@ -1,0 +1,96 @@
+---
+// Integrations
+import { Image } from "astro:assets";
+
+// Component imports
+import ButtonLink from "@components/ui/ButtonLink.astro";
+import Heading from "@components/utilities/Heading.astro";
+import Wrapper from "@components/utilities/Wrapper.astro";
+
+// Asset imports
+import heroImage from "@assets/image-home-hero-large.webp";
+import DecoSVG from "@icons/pattern-squiggle-1.svg";
+---
+
+<section aria-labelledby="hero-title">
+  <Wrapper>
+    <!-- Content -->
+    <div class="content text-center-large">
+      <Heading
+        tag="h1"
+        size="h1"
+        highlighted="Healthy"
+        text=" meals, zero fuss"
+        id="hero-title"
+      />
+      <p>
+        Discover eight quick, whole-food recipes that you can cook tonight—no
+        processed junk, no guesswork.
+      </p>
+      <ButtonLink
+        href="/recipes"
+        variant="hero"
+        text="Start exploring"
+        classes="mar-inline-auto-large"
+      />
+    </div>
+
+    <!-- Visual -->
+    <div class="visual">
+      <Image
+        src={heroImage}
+        alt="A woman slices fresh vegetables on a cutting board, surrounded by kitchen utensils and ingredients."
+        width={1192}
+        height={530}
+        priority
+      />
+      <!-- Decorative -->
+      <DecoSVG class="deco-svg" />
+    </div>
+  </Wrapper>
+</section>
+
+<style lang="scss">
+  @use "@sass/miscellaneous" as *;
+
+  section {
+    overflow-x: clip;
+    padding-block-start: var(--size-48-48-80);
+
+    // Content
+    .content {
+      p {
+        margin-block-start: var(--size-16);
+        margin-block-end: var(--size-32-32-40);
+      }
+    }
+
+    // Visual
+    .visual {
+      position: relative;
+      display: grid;
+      padding: var(--pad-cont-xs);
+      margin-block-start: var(--size-40-40-80);
+
+      img {
+        border-radius: var(--br-sm);
+        box-shadow: 0px 0px 0px var(--pad-cont-xs) var(--bg-container-default);
+      }
+    }
+
+    // Decorative
+    .deco-svg {
+      position: absolute;
+      align-self: center;
+      justify-self: center;
+      z-index: -1;
+      width: var(--size-icon-squiggle-1);
+      translate: -4rem -3rem;
+      rotate: 4.18deg;
+
+      @include mq(large) {
+        rotate: 11.93deg;
+      }
+    }
+  }
+</style>

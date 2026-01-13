@@ -43,6 +43,7 @@ $breakpoint-specific-sizes: (
   (40, 40, 64),
   (40, 40, 80),
   (40, 64, 64),
+  (48, 48, 80),
   (68, 86, 86)
 );
 
@@ -61,6 +62,8 @@ $logo-sizes: (
 );
 
 // Icons
+$size-icon-squiggle-1-min: 634px;
+$size-icon-squiggle-1-max: 1546px;
 $size-icon-features-min: 60px;
 $size-icon-features-max: 60px;
 $size-icon-cooking-stats-min: 20px;
@@ -71,6 +74,13 @@ $size-icon-bullet-point-min: 32px;
 $size-icon-bullet-point-max: 32px;
 
 $icon-sizes: (
+  squiggle-1:
+    fluid(
+      $size-icon-squiggle-1-min,
+      $size-icon-squiggle-1-max,
+      map.get($breakpoints, "small"),
+      map.get($breakpoints, "large")
+    ),
   features: fluid($size-icon-features-min, $size-icon-features-max),
   cooking-stats:
     fluid($size-icon-cooking-stats-min, $size-icon-cooking-stats-max),

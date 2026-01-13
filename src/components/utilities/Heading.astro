@@ -15,15 +15,16 @@ interface Props extends HTMLAttributes<keyof typeof sizes> {
   tag: keyof typeof sizes;
   size: keyof typeof sizes;
   text: string;
+  highlighted?: string;
   classes?: string;
 }
 
-const { tag, size, text, classes, ...rest } = Astro.props;
+const { tag, size, text, highlighted, classes, ...rest } = Astro.props;
 const CustomTag = tag;
 ---
 
 <CustomTag class:list={["heading", sizes[size], classes]} {...rest}>
-  {text}
+  <span class="highlighted">{highlighted}</span>{text}
 </CustomTag>
 
 <style lang="scss">
@@ -51,6 +52,25 @@ const CustomTag = tag;
       letter-spacing: var(--ls-lg);
     }
     &.h6 {
+    }
+
+    // Highlighted span
+    .highlighted {
+      position: relative;
+
+      &::before {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        left: var(--size-4);
+        bottom: 10%;
+        width: 100%;
+        height: 40%;
+        background-color: var(--bg-text-highlight);
+        opacity: 0.5;
+        border-radius: var(--br-xs);
+        transform: scaleX(1.05);
+      }
     }
   }
 </style>

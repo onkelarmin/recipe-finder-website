@@ -7,4 +7,11 @@ import icon from "astro-icon";
 export default defineConfig({
   integrations: [icon()],
   site: "https://fm-recipe-finder-website.netlify.app/",
+  image: {
+    responsiveStyles: true,
+    layout: "constrained",
+  },
+  devToolbar: {
+    enabled: false,
+  },
 });

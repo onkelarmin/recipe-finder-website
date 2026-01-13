@@ -1,4 +1,5 @@
 @use "../core/" as *;
+@use "media-queries" as *;
 @use "sass:map";
 
 // Background-color
@@ -85,6 +86,21 @@
 .text-center {
   text-align: center;
 }
+.text-center-small {
+  @include mq(small) {
+    text-align: center;
+  }
+}
+.text-center-medium {
+  @include mq(medium) {
+    text-align: center;
+  }
+}
+.text-center-large {
+  @include mq(large) {
+    text-align: center;
+  }
+}
 
 // Uppercase
 .uppercase {
@@ -92,8 +108,23 @@
 }
 
 // Centre horizontally
-.mx-auto {
+.mar-inline-auto {
   margin-inline: auto;
+}
+.mar-inline-auto-small {
+  @include mq(small) {
+    margin-inline: auto;
+  }
+}
+.mar-inline-auto-medium {
+  @include mq(medium) {
+    margin-inline: auto;
+  }
+}
+.mar-inline-auto-large {
+  @include mq(large) {
+    margin-inline: auto;
+  }
 }
 
 // List-style-none
@@ -241,6 +272,11 @@
   position: absolute;
   white-space: nowrap;
   width: 1px;
+}
+
+// Overflow clip
+.overflow-clip {
+  overflow: clip;
 }
 
 // GSAP auto alpha
