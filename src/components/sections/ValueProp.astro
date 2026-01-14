@@ -1,0 +1,64 @@
+---
+// Integrations
+import { Image } from "astro:assets";
+
+// Asset imports
+import valuePropImage from "@assets/image-home-real-life-large.webp";
+
+// Component imports
+import Wrapper from "@components/utilities/Wrapper.astro";
+import Heading from "@components/utilities/Heading.astro";
+import FlexGroup from "@components/utilities/FlexGroup.astro";
+---
+
+<section class="pad-sect-lg" aria-labelledby="value-prop-title">
+  <Wrapper>
+    <FlexGroup wrap="nowrap" gap="lg" classes="dir-lg-row">
+      <!-- Content -->
+      <div class="content">
+        <div class="flow-20">
+          <Heading
+            tag="h2"
+            size="h2"
+            text="Built for real life"
+            id="value-prop-title"
+          />
+          <p>
+            Cooking shouldn’t be complicated. These recipes come in under <span
+              class="text-heighlight-half">30 minutes</span
+            > of active time, fit busy schedules, and taste good enough to repeat.
+          </p>
+          <p>
+            Whether you’re new to the kitchen or just need fresh ideas, we’ve
+            got you covered.
+          </p>
+        </div>
+      </div>
+
+      <!-- Visual -->
+      <div class="visual br-lg overflow-clip">
+        <Image
+          src={valuePropImage}
+          alt="A woman slices fresh vegetables on a cutting board, surrounded by kitchen utensils and ingredients."
+          width={900}
+          height={638}
+        />
+      </div>
+    </FlexGroup>
+  </Wrapper>
+</section>
+
+<style lang="scss">
+  @use "@sass/miscellaneous" as *;
+
+  @include mq(large) {
+    .content {
+      flex: 3;
+    }
+
+    .visual {
+      flex: 4;
+      max-width: 39.6875rem;
+    }
+  }
+</style>

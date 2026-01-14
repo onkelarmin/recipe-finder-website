@@ -289,6 +289,12 @@
 .overflow-clip {
   overflow: clip;
 }
+.overflow-x-clip {
+  overflow-x: clip;
+}
+.overflow-y-clip {
+  overflow-y: clip;
+}
 
 // Square
 .square {
@@ -299,4 +305,24 @@
 .js .gsap-auto-alpha {
   visibility: hidden;
   opacity: 0;
+}
+
+// ============================= Project-specific utilities =============================
+.text-heighlight-half {
+  position: relative;
+  font: var(--font-5);
+  letter-spacing: var(--ls-md);
+  white-space: nowrap;
+
+  &::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    left: calc(var(--size-2) * -1);
+    right: calc(var(--size-2) * -1);
+    bottom: 10%;
+    height: 45%;
+    background-color: var(--bg-text-highlight);
+    border-radius: var(--br-xs);
+  }
 }
