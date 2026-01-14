@@ -1,0 +1,106 @@
+---
+// Integrations
+import { Image } from "astro:assets";
+
+// Component imports
+import Wrapper from "@components/utilities/Wrapper.astro";
+import Heading from "@components/utilities/Heading.astro";
+
+// Asset imports
+import heroImage from "@assets/image-about-our-mission-large.webp";
+import DecoSvg from "@icons/pattern-squiggle-2.svg";
+---
+
+<section
+  class="pad-sect-start-sm pad-sect-end-lg overflow-x-clip"
+  aria-labelledby="hero-title"
+>
+  <Wrapper>
+    <div class="layout">
+      <!-- Content -->
+      <div class="content">
+        <div class="flow-24">
+          <p
+            class="font-5 fit-content bg-text-highlight pad-block-2 pad-inline-6 br-6"
+          >
+            Our mission
+          </p>
+          <Heading
+            tag="h1"
+            size="h2"
+            text="Help more people cook nourishing meals, more often."
+            id="hero-title"
+          />
+          <div class="flow-16">
+            <p>
+              Healthy Recipe Finder was created to prove that healthy eating can
+              be convenient, affordable, and genuinely delicious.
+            </p>
+            <p>
+              We showcase quick, whole-food dishes that anyone can master—no
+              fancy equipment, no ultra-processed shortcuts—just honest
+              ingredients and straightforward steps.
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- Visual -->
+      <div class="visual">
+        <Image
+          src={heroImage}
+          alt="A woman slices carrots on a wooden cutting board in a well-lit kitchen."
+          width={900}
+          height={874}
+          priority
+        />
+
+        <!-- Decorative -->
+        <DecoSvg class="deco-svg" />
+      </div>
+    </div>
+  </Wrapper>
+</section>
+
+<style lang="scss">
+  @use "@sass/miscellaneous" as *;
+
+  .layout {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-40-64-64);
+    align-items: center;
+
+    .visual {
+      img {
+        border-radius: var(--size-10-20-20);
+      }
+
+      .deco-svg {
+        display: none;
+      }
+    }
+
+    @include mq(large) {
+      flex-direction: row;
+
+      .content {
+        flex: 3;
+      }
+
+      .visual {
+        position: relative;
+        flex: 4;
+        max-width: 38.625rem;
+
+        .deco-svg {
+          display: block;
+          position: absolute;
+          bottom: 0;
+          right: 0;
+          width: 12.75rem;
+          translate: 40% -80%;
+        }
+      }
+    }
+  }
+</style>

@@ -1,5 +1,6 @@
 ---
 // Import Site data
+import HeroAbout from "@/components/sections/HeroAbout.astro";
 import { sitePages } from "@/data/siteData";
 
 // Layout import
@@ -12,4 +13,6 @@ const page = sitePages.about;
   title={page.title}
   description={page.description}
   ogImage={page.ogImage}
-/>
+>
+  <HeroAbout />
+</MainLayout>

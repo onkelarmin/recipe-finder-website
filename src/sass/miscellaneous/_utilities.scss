@@ -21,6 +21,11 @@
 }
 
 // Border-radius
+@each $size, $value in $static-sizes {
+  .br-#{$size} {
+    border-radius: var(--size-#{$size});
+  }
+}
 @each $size, $value in $border-radius {
   .br-#{$size} {
     border-radius: var(--br-#{$size});
@@ -299,6 +304,11 @@
 // Square
 .square {
   aspect-ratio: 1;
+}
+
+// Fit-content
+.fit-content {
+  inline-size: fit-content;
 }
 
 // GSAP auto alpha
