@@ -1,6 +1,5 @@
 @use "helper" as *;
 @use "page" as *;
-@use "sass:map";
 
 // Wrapper max-widths
 $wrapper-sizes: (
@@ -52,13 +51,7 @@ $size-logo-md-width-min: 208px;
 $size-logo-md-width-max: 260px;
 
 $logo-sizes: (
-  md:
-    fluid(
-      $size-logo-md-width-min,
-      $size-logo-md-width-max,
-      $viewport-min,
-      map.get($breakpoints, "medium")
-    ),
+  md: fluid($size-logo-md-width-min, $size-logo-md-width-max, "min", "medium"),
 );
 
 // Icons
@@ -66,6 +59,10 @@ $size-icon-squiggle-1-min: 634px;
 $size-icon-squiggle-1-max: 1546px;
 $size-icon-features-min: 60px;
 $size-icon-features-max: 60px;
+$size-icon-fork-min: 180px;
+$size-icon-fork-max: 315px;
+$size-icon-knife-min: 172px;
+$size-icon-knife-max: 338px;
 $size-icon-cooking-stats-min: 20px;
 $size-icon-cooking-stats-max: 20px;
 $size-icon-social-height-min: 22px;
@@ -78,10 +75,12 @@ $icon-sizes: (
     fluid(
       $size-icon-squiggle-1-min,
       $size-icon-squiggle-1-max,
-      map.get($breakpoints, "small"),
-      map.get($breakpoints, "large")
+      "small",
+      "large"
     ),
   features: fluid($size-icon-features-min, $size-icon-features-max),
+  fork: fluid($size-icon-fork-min, $size-icon-fork-max, "medium", "max"),
+  knife: fluid($size-icon-knife-min, $size-icon-knife-max, "medium", "max"),
   cooking-stats:
     fluid($size-icon-cooking-stats-min, $size-icon-cooking-stats-max),
   social-height:

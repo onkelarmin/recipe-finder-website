@@ -1,6 +1,5 @@
 @use "helper" as *;
 @use "page" as *;
-@use "sass:map";
 
 // Font-family
 @font-face {
@@ -58,13 +57,7 @@ $font-sizes: (
     xs: fluid($font-size-title-xs-min, $font-size-title-xs-max),
     sm: fluid($font-size-title-sm-min, $font-size-title-sm-max),
     md: fluid($font-size-title-md-min, $font-size-title-md-max),
-    lg:
-      fluid(
-        $font-size-title-lg-min,
-        $font-size-title-lg-max,
-        $viewport-min,
-        map.get($breakpoints, "medium")
-      ),
+    lg: fluid($font-size-title-lg-min, $font-size-title-lg-max, "min", "medium"),
     xl: fluid($font-size-title-xl-min, $font-size-title-xl-max),
   ),
   interface: (

@@ -46,7 +46,7 @@ const {
   itemY,
   contentX,
   contentY,
-  gap = "md",
+  gap,
   colGap = gap,
   rowGap = gap,
   classes,
@@ -60,8 +60,8 @@ const justifyContent = contentX && justifyContentOptions[contentX];
 const alignContent = contentY && alignContentOptions[contentY];
 
 // Gap
-const colGapStr = `var(--space-cont-${colGap})`;
-const rowGapStr = `var(--space-cont-${rowGap})`;
+const colGapStr = colGap && `var(--${colGap})`;
+const rowGapStr = colGap && `var(--${rowGap})`;
 ---
 
 <div class:list={["auto-grid", type, classes]} {...rest}>

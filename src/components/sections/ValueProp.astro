@@ -8,12 +8,11 @@ import valuePropImage from "@assets/image-home-real-life-large.webp";
 // Component imports
 import Wrapper from "@components/utilities/Wrapper.astro";
 import Heading from "@components/utilities/Heading.astro";
-import FlexGroup from "@components/utilities/FlexGroup.astro";
 ---
 
 <section class="pad-sect-lg" aria-labelledby="value-prop-title">
   <Wrapper>
-    <FlexGroup wrap="nowrap" gap="lg" classes="dir-lg-row">
+    <div class="layout">
       <!-- Content -->
       <div class="content">
         <div class="flow-20">
@@ -44,21 +43,29 @@ import FlexGroup from "@components/utilities/FlexGroup.astro";
           height={638}
         />
       </div>
-    </FlexGroup>
+    </div>
   </Wrapper>
 </section>
 
 <style lang="scss">
   @use "@sass/miscellaneous" as *;
 
-  @include mq(large) {
-    .content {
-      flex: 3;
-    }
+  .layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-cont-lg);
 
-    .visual {
-      flex: 4;
-      max-width: 39.6875rem;
+    @include mq(large) {
+      flex-direction: row;
+      .content {
+        flex: 3;
+      }
+
+      .visual {
+        flex: 4;
+        max-width: 39.6875rem;
+      }
     }
   }
 </style>
