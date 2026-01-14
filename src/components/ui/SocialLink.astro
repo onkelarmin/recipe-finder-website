@@ -1,0 +1,44 @@
+---
+import type { HTMLAttributes, SvgComponent } from "astro/types";
+
+// Props
+interface Props extends HTMLAttributes<"a"> {
+  href: string;
+  name: string;
+  icon: SvgComponent;
+}
+
+const { href, name, icon } = Astro.props;
+
+const IconComponent = icon;
+---
+
+<a href={href} target="_blank"
+  ><IconComponent aria-hidden="true" /><span class="visually-hidden"
+    >Visit our {name} page</span
+  ></a
+>
+
+<style lang="scss">
+  a {
+    display: inline-block;
+    height: var(--size-icon-social-height);
+    color: var(--fg-icon-default);
+    border-radius: var(--br-xs);
+
+    @media (hover: hover) {
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+
+    &:focus {
+      outline: 0px solid transparent;
+    }
+
+    &:focus-visible {
+      outline: var(--bw-md) solid var(--fg-icon-default);
+      outline-offset: var(--bw-md);
+    }
+  }
+</style>

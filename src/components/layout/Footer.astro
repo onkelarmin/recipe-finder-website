@@ -1,0 +1,55 @@
+---
+// Component imports
+import Wrapper from "@components/utilities/Wrapper.astro";
+import FlexGroup from "@components/utilities/FlexGroup.astro";
+import SocialLink from "@components/ui/SocialLink.astro";
+
+// Asset imports
+import InstagramSvg from "@icons/icon-instagram.svg";
+import BlueskySvg from "@icons/icon-bluesky.svg";
+import TikTokSvg from "@icons/icon-tiktok.svg";
+---
+
+<footer>
+  <Wrapper>
+    <FlexGroup dir="col" primAxis="between" gap="size-24" classes="dir-md-row">
+      <p class="font-9">Made with ❤️ and 🥑</p>
+      <ul>
+        <li>
+          <SocialLink
+            href="https://www.instagram.com/"
+            name="Instagram"
+            icon={InstagramSvg}
+          />
+        </li>
+        <li>
+          <SocialLink
+            href="https://bsky.app/"
+            name="Bluesky"
+            icon={BlueskySvg}
+          />
+        </li>
+        <li>
+          <SocialLink
+            href="https://www.tiktok.com/en/"
+            name="TikTok"
+            icon={TikTokSvg}
+          />
+        </li>
+      </ul>
+    </FlexGroup>
+  </Wrapper>
+</footer>
+
+<style lang="scss">
+  footer {
+    padding-block-start: var(--size-32-40-40);
+
+    ul {
+      display: flex;
+      align-items: center;
+      gap: var(--size-24);
+      list-style: none;
+    }
+  }
+</style>
