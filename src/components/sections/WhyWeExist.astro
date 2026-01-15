@@ -1,0 +1,44 @@
+---
+// Component imports
+import Wrapper from "@components/utilities/Wrapper.astro";
+import Heading from "@components/utilities/Heading.astro";
+import AboutListItem from "@components/ui/AboutListItem.astro";
+---
+
+<section
+  class="pad-sect-md border-bottom-default"
+  aria-labelledby="why-we-exist-title"
+>
+  <Wrapper>
+    <div class="layout">
+      <Heading tag="h2" size="h2" text="Why we exist" id="why-we-exist-title" />
+      <ul class="flow-lg">
+        <AboutListItem
+          title="Cut through the noise."
+          description="The internet is bursting with recipes, yet most busy cooks still default to take-away or packaged foods. We curate a tight collection of fool-proof dishes so you can skip the scrolling and start cooking."
+        />
+        <AboutListItem
+          title="Empower home kitchens."
+          description="When you control what goes into your meals, you control how you feel. Every recipe is built around unrefined ingredients and ready in about half an hour of active prep."
+        />
+        <AboutListItem
+          title="Make healthy look good."
+          description="High-resolution imagery shows you exactly what success looks like—because we eat with our eyes first, and confidence matters."
+        />
+      </ul>
+    </div>
+  </Wrapper>
+</section>
+
+<style lang="scss">
+  @use "@sass/miscellaneous" as *;
+
+  .layout {
+    display: grid;
+    gap: var(--size-40-40-64);
+
+    @include mq(large) {
+      grid-template-columns: 1fr 2fr;
+    }
+  }
+</style>

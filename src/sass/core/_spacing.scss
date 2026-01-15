@@ -63,13 +63,16 @@ $spacer-container-sm-min: 20px;
 $spacer-container-sm-max: 20px;
 $spacer-container-md-min: 24px;
 $spacer-container-md-max: 32px;
-$spacer-container-lg-min: 32px;
+$spacer-container-lg-min: 24px;
 $spacer-container-lg-max: 48px;
+$spacer-container-xl-min: 32px;
+$spacer-container-xl-max: 48px;
 
 $spacer-container: (
   sm: fluid($spacer-container-sm-min, $spacer-container-sm-max),
   md: fluid($spacer-container-md-min, $spacer-container-md-max, "min", "medium"),
   lg: fluid($spacer-container-lg-min, $spacer-container-lg-max),
+  xl: fluid($spacer-container-xl-min, $spacer-container-xl-max),
 );
 
 // Selectable padding

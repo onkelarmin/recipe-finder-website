@@ -50,6 +50,18 @@
   .border-#{$type} {
     border: var(--border-#{$type});
   }
+  .border-top-#{$type} {
+    border-top: var(--border-#{$type});
+  }
+  .border-bottom-#{$type} {
+    border-bottom: var(--border-#{$type});
+  }
+  .border-left-#{$type} {
+    border-left: var(--border-#{$type});
+  }
+  .border-right-#{$type} {
+    border-right: var(--border-#{$type});
+  }
 }
 
 .border-none {

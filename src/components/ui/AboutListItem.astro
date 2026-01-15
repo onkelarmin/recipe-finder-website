@@ -1,0 +1,44 @@
+---
+// Type imports
+import type { HTMLAttributes } from "astro/types";
+
+// Component imports
+import Heading from "../utilities/Heading.astro";
+
+// Asset imports
+import MarkerSvg from "@icons/icon-bullet-point.svg";
+
+// Props
+interface Props extends HTMLAttributes<"li"> {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<li>
+  <div class="layout">
+    <MarkerSvg class="marker" aria-hidden="true" />
+    <Heading tag="h3" size="h4" text={title} />
+    <p>{description}</p>
+  </div>
+</li>
+
+<style lang="scss">
+  li {
+    list-style-type: none;
+
+    .layout {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      column-gap: var(--size-20);
+      row-gap: var(--size-12);
+
+      .marker {
+        width: var(--size-32);
+        grid-row: span 2;
+      }
+    }
+  }
+</style>

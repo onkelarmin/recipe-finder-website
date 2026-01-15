@@ -1,0 +1,19 @@
+---
+// Import Site data
+import { sitePages } from "@/data/siteData";
+
+// Layout import
+import MainLayout from "@layouts/MainLayout.astro";
+
+// Component imports
+
+const page = sitePages.recipes;
+---
+
+<MainLayout
+  title={page.title}
+  description={page.description}
+  ogImage={page.ogImage}
+>
+  Main</MainLayout
+>
