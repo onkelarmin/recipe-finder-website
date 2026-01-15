@@ -1,0 +1,82 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+// Props
+interface Props extends HTMLAttributes<"label"> {
+  variant: "prep" | "cook";
+  option: number;
+}
+
+const { variant, option } = Astro.props;
+---
+
+<label>
+  <input type="radio" name={`${variant}-time`} value={option} />
+  {option} minutes
+</label>
+
+<style lang="scss">
+  label {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: var(--size-8);
+    font: var(--font-7);
+    letter-spacing: var(--ls-xl);
+    color: var(--fg-text-extra-strong);
+    padding: var(--size-8);
+    cursor: pointer;
+
+    input {
+      appearance: none;
+      position: relative;
+      display: grid;
+      place-items: center;
+      color: var(--fg-radio-button-idle);
+      width: 1rem;
+      aspect-ratio: 1;
+      border-radius: var(--br-round);
+      border: 0.0625rem solid currentColor;
+      box-shadow: var(--bs-radio-button);
+      transition:
+        color var(--trans-default),
+        border-color var(--trans-default);
+
+      &::before {
+        content: "";
+        position: absolute;
+        width: 0.5rem;
+        aspect-ratio: 1;
+        background-color: currentColor;
+        border-radius: var(--br-round);
+        transform: scale(0.5);
+        opacity: 0;
+        transition:
+          transform var(--trans-default-sensitive),
+          opacity var(--trans-default-sensitive);
+      }
+
+      &:checked {
+        color: var(--fg-radio-button-checked);
+        border: 0.125rem solid currentColor;
+
+        &::before {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+    }
+
+    @media (hover: hover) {
+      &:hover {
+        input {
+          color: var(--fg-radio-button-hover);
+
+          &:checked {
+            color: var(--fg-radio-button-checked-hover);
+          }
+        }
+      }
+    }
+  }
+</style>

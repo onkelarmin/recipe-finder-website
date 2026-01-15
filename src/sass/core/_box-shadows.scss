@@ -11,12 +11,20 @@ $box-shadow-colors: (
   feature-icon: (
     light: "neutral-200",
   ),
+  filter-menu: (
+    light: "neutral-300",
+  ),
+  radio-button: (
+    light: "neutral-900" 0.12,
+  ),
 );
 
 $box-shadows-offsets: (
   none: 0px 0px 0px 0px,
   feature-icon: 0px 1px 0px 0px,
   mobile-nav-menu: 0px 12px 22px -12px,
+  filter-menu: 0px 12px 22px -12px,
+  radio-button: 0px 1px 2px 0px,
 );
 
 $box-shadows: (
@@ -25,5 +33,11 @@ $box-shadows: (
   ),
   feature-icon: (
     var(--bs-feature-icon),
+  ),
+  filter-menu: (
+    var(--bs-filter-menu),
+  ),
+  radio-button: (
+    var(--bs-radio-button),
   ),
 );

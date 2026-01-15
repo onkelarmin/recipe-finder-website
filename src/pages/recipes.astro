@@ -6,6 +6,8 @@ import { sitePages } from "@/data/siteData";
 import MainLayout from "@layouts/MainLayout.astro";
 
 // Component imports
+import RecipesHero from "@/components/sections/RecipesHero.astro";
+import RecipesOverview from "@/components/sections/RecipesOverview.astro";
 
 const page = sitePages.recipes;
 ---
@@ -15,5 +17,6 @@ const page = sitePages.recipes;
   description={page.description}
   ogImage={page.ogImage}
 >
-  Main</MainLayout
->
+  <RecipesHero />
+  <RecipesOverview />
+</MainLayout>

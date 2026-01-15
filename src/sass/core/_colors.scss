@@ -4,6 +4,7 @@ $color-core-neutral: (
   "100": #f6f5f1,
   "200": #e0e6e3,
   "300": #d0dcd9,
+  "400": #d0dcd9,
   "600": #395852,
   "800": #395852,
   "900": #163a34,
@@ -113,6 +114,20 @@ $foreground-colors: (
   icon: (
     default: (
       light: "neutral-900",
+    ),
+  ),
+  radio-button: (
+    idle: (
+      light: "neutral-400",
+    ),
+    hover: (
+      light: "neutral-200",
+    ),
+    checked: (
+      light: "neutral-900",
+    ),
+    checked-hover: (
+      light: "neutral-800",
     ),
   ),
 );

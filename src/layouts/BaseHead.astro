@@ -34,6 +34,10 @@ const siteUrl = import.meta.env.SITE;
   <script is:inline>
     // add js class to HTML
     document.documentElement.classList.add("js");
+    // Anchor positioning polyfill
+    if (!("anchorName" in document.documentElement.style)) {
+      import("https://unpkg.com/@oddbird/css-anchor-positioning");
+    }
   </script>
 
   <!-- Open Graph / Facebook -->

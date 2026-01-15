@@ -1,0 +1,37 @@
+---
+// Integrations
+import { getCollection } from "astro:content";
+
+// Component imports
+import Wrapper from "@components/utilities/Wrapper.astro";
+import FilterMenuButton from "@components/ui/FilterMenuButton.astro";
+import FilterMenu from "@components/ui/FilterMenu.astro";
+
+// Content collection
+const allRecipes = await getCollection("recipes");
+---
+
+<section>
+  <Wrapper>
+    <!-- Controls -->
+    <div class="controls">
+      <!-- Menu Buttons -->
+      <fieldset class="border-none">
+        <legend class="visually-hidden">Filter by: </legend>
+        <FilterMenuButton text="Max Prep Time" variant="prep" />
+        <FilterMenuButton text="Max Cook Time" variant="cook" />
+
+        <!-- Menus -->
+        <FilterMenu variant="prep" options={[0, 5, 10]} />
+        <FilterMenu variant="cook" options={[0, 5, 10, 15, 20]} />
+      </fieldset>
+    </div>
+
+    <!-- Recipes -->
+    <ul>
+      {allRecipes.map((r) => <li>{r.data.title}</li>)}
+    </ul>
+  </Wrapper>
+</section>
+
+<style lang="scss"></style>

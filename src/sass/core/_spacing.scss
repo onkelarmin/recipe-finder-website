@@ -35,10 +35,10 @@ $padding-section-lg-min: 64px;
 $padding-section-lg-max: 96px;
 
 $padding-section: (
-  xs: fluid($padding-section-xs-min, $padding-section-xs-max, "medium", "max"),
-  sm: fluid($padding-section-sm-min, $padding-section-md-max),
-  md: fluid($padding-section-md-min, $padding-section-md-max, "min", "large"),
-  lg: fluid($padding-section-lg-min, $padding-section-lg-max),
+  xs: fluid($padding-section-xs-min, $padding-section-xs-max, "small", "large"),
+  sm: fluid($padding-section-sm-min, $padding-section-md-max, "small", "large"),
+  md: fluid($padding-section-md-min, $padding-section-md-max, "small", "large"),
+  lg: fluid($padding-section-lg-min, $padding-section-lg-max, "small", "large"),
 );
 
 // Container padding

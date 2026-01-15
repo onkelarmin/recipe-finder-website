@@ -1,0 +1,53 @@
+---
+// Type imports
+import type { HTMLAttributes } from "astro/types";
+
+// Component imports
+import RadioButton from "@components/ui/RadioButton.astro";
+
+// Props
+interface Props extends HTMLAttributes<"div"> {
+  variant: "prep" | "cook";
+  options: number[];
+  classes?: string;
+}
+
+const { variant, options, classes } = Astro.props;
+
+const anchorName = `--menu-button-${variant}`;
+---
+
+<div
+  class:list={["filter-menu", classes]}
+  id=`filter-menu-${variant}`
+  role="menu"
+>
+  <fieldset>
+    <legend class="visually-hidden"
+      >Set a maximum {variant} time. Applying a filter will change the listed recipes</legend
+    >
+    {options.map((o) => <RadioButton variant={variant} option={o} />)}
+  </fieldset>
+  <button type="button">clear</button>
+</div>
+
+<style lang="scss" define:vars={{ anchorName }}>
+  .filter-menu {
+    width: 15rem;
+    background-color: var(--bg-container-default);
+    border-radius: var(--size-8);
+    border: var(--border-default);
+    box-shadow: var(--bs-filter-menu);
+    padding: var(--pad-cont-sm);
+    position-anchor: var(--anchorName);
+    top: anchor(bottom);
+    left: anchor(left);
+    margin-block-start: var(--size-8);
+
+    fieldset {
+      display: flex;
+      flex-direction: column;
+      border: none;
+    }
+  }
+</style>

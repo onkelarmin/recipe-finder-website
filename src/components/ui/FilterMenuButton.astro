@@ -1,0 +1,92 @@
+---
+// Types
+import type { HTMLAttributes, SvgComponent } from "astro/types";
+
+// Asset imports
+import ChevronSvg from "@icons/icon-chevron-down.svg";
+
+// Props
+interface Props extends HTMLAttributes<"button"> {
+  text: string;
+  variant: "prep" | "cook";
+  classes?: string;
+}
+
+const { text, variant, classes, ...rest } = Astro.props;
+
+const anchorName = `--menu-button-${variant}`;
+---
+
+<button
+  class:list={["btn", classes]}
+  type="button"
+  aria-haspopup="menu"
+  aria-controls=`filter-menu-${variant}`
+  popovertarget=`filter-menu-${variant}`
+  aria-expanded="false"
+  {...rest}
+>
+  <span class="text">{text}</span>
+  <ChevronSvg />
+</button>
+
+<style lang="scss" define:vars={{ anchorName }}>
+  .btn {
+    width: fit-content;
+    display: inline flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--btn-gap-default);
+    font: var(--font-7);
+    letter-spacing: var(--ls-xl);
+    text-transform: none;
+    background-color: var(--btn-bg-color-idle-select);
+    color: var(--btn-fg-color-idle-select);
+    border-style: solid;
+    border-width: var(--btn-border-width-select);
+    border-color: var(--btn-border-color-idle-select);
+    border-radius: var(--btn-border-radius-default);
+    padding-inline: var(--btn-padding-inline-select);
+    padding-block: var(--btn-padding-block-select);
+    anchor-name: var(--anchorName);
+
+    transition:
+      color var(--trans-default),
+      background-color var(--trans-default),
+      border-color var(--trans-default);
+
+    &:not(:disabled) {
+      cursor: pointer;
+    }
+
+    @media (hover: hover) {
+      &:hover {
+        background-color: var(--btn-bg-color-hover-select);
+        color: var(--btn-fg-color-hover-select);
+        border-color: var(--btn-border-color-hover-select);
+      }
+    }
+
+    &:active {
+      // No pressed state
+    }
+
+    &:focus {
+      outline: 0px solid transparent;
+    }
+
+    &:focus-visible {
+      box-shadow:
+        0 0 0 var(--btn-offset-width-select)
+          var(--btn-offset-color-focus-select),
+        0 0 0 calc(var(--btn-outline-width-select) * 2)
+          var(--btn-outline-color-focus-select);
+    }
+
+    [data-icon] {
+      width: var(--btn-icon-size-default);
+      aspect-ratio: 1;
+      color: inherit;
+    }
+  }
+</style>
