@@ -29,7 +29,7 @@ const { image, cookMinutes, prepMinutes, servings, slug, title, overview } =
 <article class="recipe-card flow-16">
   <!-- Visual -->
   <div class="visual">
-    <Image src={image.large} alt={title} width={900} height={589} />
+    <Image src={image.large} alt={title} width={900} height={825} />
   </div>
 
   <!-- Content -->
@@ -67,10 +67,18 @@ const { image, cookMinutes, prepMinutes, servings, slug, title, overview } =
     box-shadow: var(--bs-recipe-card);
     padding-block: var(--pad-cont-sm);
     padding-inline: var(--pad-cont-sm);
+    container-type: inline-size;
+    container-name: recipe-card;
 
     .visual {
-      border-radius: var(--br-md);
-      overflow: clip;
+      img {
+        border-radius: var(--br-md);
+        aspect-ratio: 1.2;
+
+        @container recipe-card (inline-size > 420px) {
+          aspect-ratio: 1.5;
+        }
+      }
     }
 
     .content {
