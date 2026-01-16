@@ -1,0 +1,72 @@
+---
+// Asset imports
+import SearchIcon from "@icons/icon-search.svg";
+---
+
+<label>
+  <SearchIcon aria-hidden="true" class="search-icon" />
+  <span class="visually-hidden"
+    >Search by name or ingredient - results will be shown as you type
+  </span>
+  <input
+    type="search"
+    id="search-bar"
+    placeholder="Search by name or ingredient…"
+  />
+</label>
+
+<style lang="scss">
+  @use "@sass/miscellaneous" as *;
+
+  label {
+    position: relative;
+    width: 100%;
+
+    @include mq(medium) {
+      max-width: 19.375rem;
+    }
+
+    .search-icon {
+      position: absolute;
+      width: var(--size-icon-search);
+      align-self: center;
+      left: var(--size-16);
+    }
+
+    input {
+      width: 100%;
+      font: var(--font-7);
+      letter-spacing: var(--ls-xl);
+      background-color: var(--bg-container-default);
+      color: var(--fg-text-strong);
+      border: var(--border-default);
+      border-radius: var(--btn-border-radius-default);
+      padding-block: var(--size-10);
+      padding-inline-start: calc(
+        var(--size-16) + var(--size-icon-search) + var(--size-8)
+      );
+      padding-inline-end: var(--size-16);
+      transition: border-color var(--trans-default);
+
+      &::placeholder {
+        color: inherit;
+        opacity: 0.7;
+      }
+
+      @media (hover: hover) {
+        &:hover {
+          border-color: currentColor;
+        }
+      }
+
+      &:focus {
+        outline: 0px solid transparent;
+      }
+
+      &:focus-visible {
+        outline: var(--size-2) solid currentColor;
+        outline-offset: var(--size-2);
+      }
+    }
+  }
+</style>

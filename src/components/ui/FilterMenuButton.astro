@@ -32,7 +32,6 @@ const anchorName = `--menu-button-${variant}`;
 
 <style lang="scss" define:vars={{ anchorName }}>
   .btn {
-    width: fit-content;
     display: inline flex;
     justify-content: center;
     align-items: center;
@@ -81,6 +80,10 @@ const anchorName = `--menu-button-${variant}`;
           var(--btn-offset-color-focus-select),
         0 0 0 calc(var(--btn-outline-width-select) * 2)
           var(--btn-outline-color-focus-select);
+    }
+
+    .text {
+      white-space: nowrap;
     }
 
     [data-icon] {

@@ -4,10 +4,13 @@ import type { HTMLAttributes } from "astro/types";
 
 // Component imports
 import RadioButton from "@components/ui/RadioButton.astro";
+import ClearButton from "./ClearButton.astro";
+
+export type Variant = "prep" | "cook";
 
 // Props
 interface Props extends HTMLAttributes<"div"> {
-  variant: "prep" | "cook";
+  variant: Variant;
   options: number[];
   classes?: string;
 }
@@ -21,6 +24,7 @@ const anchorName = `--menu-button-${variant}`;
   class:list={["filter-menu", classes]}
   id=`filter-menu-${variant}`
   role="menu"
+  popover
 >
   <fieldset>
     <legend class="visually-hidden"
@@ -28,7 +32,7 @@ const anchorName = `--menu-button-${variant}`;
     >
     {options.map((o) => <RadioButton variant={variant} option={o} />)}
   </fieldset>
-  <button type="button">clear</button>
+  <ClearButton variant={variant} />
 </div>
 
 <style lang="scss" define:vars={{ anchorName }}>

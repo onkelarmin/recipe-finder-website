@@ -1,0 +1,66 @@
+---
+// Type imports
+import type { HTMLAttributes } from "astro/types";
+import type { Variant } from "@components/ui/FilterMenu.astro";
+
+// Props
+interface Props extends HTMLAttributes<"button"> {
+  variant: Variant;
+}
+
+const { variant } = Astro.props;
+---
+
+<button class="clear-button" data-variant={variant}>Clear</button>
+
+<style lang="scss">
+  .clear-button {
+    display: inline block;
+    width: 100%;
+    font: var(--font-9);
+    letter-spacing: var(--ls-xl);
+    text-align: start;
+    color: var(--fg-text-extra-strong);
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding-block: var(--size-2);
+    padding-inline: var(--size-8);
+    border-radius: var(--size-4);
+    transition: color var(--trans-default);
+
+    @media (hover: hover) {
+      &:hover {
+        color: var(--fg-text-strong);
+      }
+    }
+
+    &:focus {
+      outline: 0px solid transparent;
+    }
+
+    &:focus-visible {
+      outline: var(--size-2) solid var(--fg-radio-button-focus-label-outline);
+    }
+  }
+</style>
+
+<script>
+  const clearButtons = [
+    ...document.querySelectorAll(".clear-button"),
+  ] as HTMLButtonElement[];
+
+  clearButtons.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      const radioButtons = btn
+        .closest(".filter-menu")
+        ?.querySelectorAll(
+          'input[type="radio"]'
+        ) as NodeListOf<HTMLInputElement>;
+      const radioButtonsArr = [...radioButtons];
+      radioButtonsArr.forEach((i) => {
+        i.checked = false;
+      });
+    });
+  });
+</script>

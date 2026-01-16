@@ -6,18 +6,28 @@ import { getCollection } from "astro:content";
 import Wrapper from "@components/utilities/Wrapper.astro";
 import FilterMenuButton from "@components/ui/FilterMenuButton.astro";
 import FilterMenu from "@components/ui/FilterMenu.astro";
+import SearchBar from "@components/ui/SearchBar.astro";
+import RecipeCard from "@components/ui/RecipeCard.astro";
+import Heading from "@components/utilities/Heading.astro";
 
 // Content collection
 const allRecipes = await getCollection("recipes");
 ---
 
-<section>
+<section class="pad-sect-end-md" aria-labelledby="recipe-overview-title">
   <Wrapper>
+    <Heading
+      tag="h2"
+      size="h2"
+      text="Recipe overview"
+      id="recipe-overview-title"
+      class="visually-hidden"
+    />
     <!-- Controls -->
     <div class="controls">
-      <!-- Menu Buttons -->
-      <fieldset class="border-none">
+      <fieldset class="filter-group">
         <legend class="visually-hidden">Filter by: </legend>
+        <!-- Menu Buttons -->
         <FilterMenuButton text="Max Prep Time" variant="prep" />
         <FilterMenuButton text="Max Cook Time" variant="cook" />
 
@@ -25,13 +35,58 @@ const allRecipes = await getCollection("recipes");
         <FilterMenu variant="prep" options={[0, 5, 10]} />
         <FilterMenu variant="cook" options={[0, 5, 10, 15, 20]} />
       </fieldset>
+
+      <!-- Search bar -->
+      <SearchBar />
     </div>
 
     <!-- Recipes -->
-    <ul>
-      {allRecipes.map((r) => <li>{r.data.title}</li>)}
+    <ul class="recipe-list">
+      {
+        allRecipes.map((r) => (
+          <li>
+            <RecipeCard recipe={r} />
+          </li>
+        ))
+      }
     </ul>
   </Wrapper>
 </section>
 
-<style lang="scss"></style>
+<style lang="scss">
+  @use "@sass/miscellaneous" as *;
+
+  .controls {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-12);
+
+    .filter-group {
+      display: flex;
+      flex-direction: column;
+      gap: var(--size-12);
+      border: none;
+    }
+
+    @include mq(medium) {
+      flex-direction: row;
+      justify-content: space-between;
+
+      .filter-group {
+        flex-direction: row;
+      }
+    }
+  }
+
+  .recipe-list {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--size-32);
+    list-style-type: none;
+    margin-block-start: var(--size-24);
+
+    @include mq(large) {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+</style>

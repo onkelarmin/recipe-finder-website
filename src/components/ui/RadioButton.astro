@@ -1,9 +1,11 @@
 ---
+// Type imports
 import type { HTMLAttributes } from "astro/types";
+import type { Variant } from "@components/ui/FilterMenu.astro";
 
 // Props
 interface Props extends HTMLAttributes<"label"> {
-  variant: "prep" | "cook";
+  variant: Variant;
   option: number;
 }
 
@@ -24,6 +26,7 @@ const { variant, option } = Astro.props;
     font: var(--font-7);
     letter-spacing: var(--ls-xl);
     color: var(--fg-text-extra-strong);
+    border-radius: var(--size-8);
     padding: var(--size-8);
     cursor: pointer;
 
@@ -65,6 +68,10 @@ const { variant, option } = Astro.props;
           opacity: 1;
         }
       }
+
+      &:focus {
+        outline: 0px solid transparent;
+      }
     }
 
     @media (hover: hover) {
@@ -76,6 +83,14 @@ const { variant, option } = Astro.props;
             color: var(--fg-radio-button-checked-hover);
           }
         }
+      }
+    }
+    &:has(input:focus-visible) {
+      outline: var(--size-2) solid var(--fg-radio-button-focus-label-outline);
+
+      input {
+        box-shadow: 0px 0px 0px var(--size-4)
+          var(--fg-radio-button-focus-outline);
       }
     }
   }

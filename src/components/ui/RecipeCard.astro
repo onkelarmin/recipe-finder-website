@@ -1,0 +1,115 @@
+---
+// Integrations
+import { Image } from "astro:assets";
+
+// Type imports
+import type { HTMLAttributes } from "astro/types";
+import type { CollectionEntry } from "astro:content";
+
+// Component imports
+import Heading from "@components/utilities/Heading.astro";
+import ButtonLink from "@components/ui/ButtonLink.astro";
+
+// Asset imports
+import ServingsSvg from "@icons/icon-servings.svg";
+import PrepTimeSvg from "@icons/icon-prep-time.svg";
+import CookTimeSvg from "@icons/icon-cook-time.svg";
+
+// Props
+interface Props extends HTMLAttributes<"article"> {
+  recipe: CollectionEntry<"recipes">;
+}
+
+const { recipe } = Astro.props;
+
+const { image, cookMinutes, prepMinutes, servings, slug, title, overview } =
+  recipe.data;
+---
+
+<article class="recipe-card flow-16">
+  <!-- Visual -->
+  <div class="visual">
+    <Image src={image.large} alt={title} width={900} height={589} />
+  </div>
+
+  <!-- Content -->
+  <div class="content">
+    <Heading tag="h3" size="h5" text={title} />
+    <p>{overview}</p>
+  </div>
+
+  <!-- Stats -->
+  <ul class="stats">
+    <li>
+      <ServingsSvg class="stats-icon" aria-hidden="true" />
+      Servings: {servings.toString()}
+    </li>
+    <li>
+      <PrepTimeSvg class="stats-icon" aria-hidden="true" />
+      Prep: {prepMinutes.toString()} mins
+    </li>
+    <li>
+      <CookTimeSvg class="stats-icon" aria-hidden="true" />
+      Cook: {cookMinutes.toString()} mins
+    </li>
+  </ul>
+
+  <!-- ButtonLink -->
+  <ButtonLink href=`/recipes/${slug}` variant="card" text="View Recipe" />
+</article>
+
+<style lang="scss">
+  .recipe-card {
+    min-width: 0;
+    background-color: var(--bg-container-default);
+    border-radius: var(--br-md);
+    border: var(--border-default);
+    box-shadow: var(--bs-recipe-card);
+    padding-block: var(--pad-cont-sm);
+    padding-inline: var(--pad-cont-sm);
+
+    .visual {
+      border-radius: var(--br-md);
+      overflow: clip;
+    }
+
+    .content {
+      padding-inline: var(--pad-cont-sm);
+
+      .heading {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow-x: clip;
+      }
+
+      p {
+        font: var(--font-9);
+        letter-spacing: var(--ls-xl);
+        margin-block-start: var(--size-10);
+      }
+    }
+
+    .stats {
+      display: flex;
+      flex-wrap: wrap;
+      column-gap: var(--size-16);
+      row-gap: var(--size-8);
+      list-style-type: none;
+      padding-inline: var(--pad-cont-sm);
+
+      li {
+        display: flex;
+        align-items: center;
+        gap: var(--size-6);
+        flex-wrap: nowrap;
+        font: var(--font-9);
+        letter-spacing: var(--ls-xl);
+        color: var(--fg-text-strong);
+      }
+
+      &-icon {
+        width: var(--size-icon-cooking-stats);
+      }
+    }
+  }
+</style>

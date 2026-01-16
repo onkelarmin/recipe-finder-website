@@ -17,6 +17,9 @@ $box-shadow-colors: (
   radio-button: (
     light: "neutral-900" 0.12,
   ),
+  recipe-card: (
+    light: "neutral-900" 0.16,
+  ),
 );
 
 $box-shadows-offsets: (
@@ -25,6 +28,7 @@ $box-shadows-offsets: (
   mobile-nav-menu: 0px 12px 22px -12px,
   filter-menu: 0px 12px 22px -12px,
   radio-button: 0px 1px 2px 0px,
+  recipe-card: 0px 8px 16px -9px,
 );
 
 $box-shadows: (
@@ -39,5 +43,8 @@ $box-shadows: (
   ),
   radio-button: (
     var(--bs-radio-button),
+  ),
+  recipe-card: (
+    var(--bs-recipe-card),
   ),
 );

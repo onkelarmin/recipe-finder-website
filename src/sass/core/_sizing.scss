@@ -64,6 +64,8 @@ $size-icon-fork-min: 180px;
 $size-icon-fork-max: 315px;
 $size-icon-knife-min: 172px;
 $size-icon-knife-max: 338px;
+$size-icon-search-min: 20px;
+$size-icon-search-max: 20px;
 $size-icon-cooking-stats-min: 20px;
 $size-icon-cooking-stats-max: 20px;
 $size-icon-social-height-min: 22px;
@@ -82,6 +84,7 @@ $icon-sizes: (
   features: fluid($size-icon-features-min, $size-icon-features-max),
   fork: fluid($size-icon-fork-min, $size-icon-fork-max, "medium", "max"),
   knife: fluid($size-icon-knife-min, $size-icon-knife-max, "medium", "max"),
+  search: fluid($size-icon-search-min, $size-icon-search-max),
   cooking-stats:
     fluid($size-icon-cooking-stats-min, $size-icon-cooking-stats-max),
   social-height:
