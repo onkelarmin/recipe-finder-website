@@ -1,0 +1,31 @@
+---
+// Type imports
+import type { GetStaticPaths } from "astro";
+
+// Integrations
+import { getCollection } from "astro:content";
+
+// Dynamic routing
+export const getStaticPaths = (async () => {
+  const recipes = await getCollection("recipes");
+  return recipes.map((recipe) => ({
+    params: { slug: recipe.data.slug },
+    props: { recipe },
+  }));
+}) satisfies GetStaticPaths;
+
+// Layout import
+import MainLayout from "@/layouts/MainLayout.astro";
+
+const { recipe } = Astro.props;
+
+const { overview, slug, title } = recipe.data;
+---
+
+<MainLayout
+  title={title}
+  description={overview}
+  ogImage={`og/${slug}-small.webp`}
+>
+  Hi
+</MainLayout>
