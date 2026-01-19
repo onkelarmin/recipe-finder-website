@@ -1,0 +1,62 @@
+---
+// Integrations
+import { getCollection } from "astro:content";
+
+// Component imports
+import Wrapper from "@components/utilities/Wrapper.astro";
+import Heading from "@components/utilities/Heading.astro";
+
+// Type imports
+import type { HTMLAttributes } from "astro/types";
+import type { CollectionEntry } from "astro:content";
+import RecipeCard from "../ui/RecipeCard.astro";
+
+// Props
+interface Props extends HTMLAttributes<"section"> {
+  recipe: CollectionEntry<"recipes">;
+}
+
+const { recipe } = Astro.props;
+
+const allRecipes = await getCollection("recipes", ({ data }) => {
+  return data.id !== recipe.data.id;
+});
+
+const moreRecipes = allRecipes.slice(0, 3);
+---
+
+<section aria-labelledby="more-recipes-title">
+  <Wrapper>
+    <Heading tag="h2" size="h3" text="More recipes" id="more-recipes-title" />
+    <ul>
+      {
+        moreRecipes.map((r) => (
+          <li>
+            <RecipeCard recipe={r} />
+          </li>
+        ))
+      }
+    </ul>
+  </Wrapper>
+</section>
+
+<style lang="scss">
+  @use "@sass/miscellaneous" as *;
+
+  section {
+    padding-block-start: var(--size-48-48-64);
+    padding-block-end: var(--size-48-48-96);
+
+    ul {
+      display: grid;
+      gap: var(--size-32);
+      list-style-type: none;
+      margin-block-start: var(--size-24);
+
+      @include mq(large) {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        align-items: stretch;
+      }
+    }
+  }
+</style>

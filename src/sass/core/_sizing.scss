@@ -43,7 +43,9 @@ $breakpoint-specific-sizes: (
   (40, 40, 64),
   (40, 40, 80),
   (40, 64, 64),
+  (48, 48, 64),
   (48, 48, 80),
+  (48, 48, 96),
   (68, 86, 86)
 );
 
@@ -74,8 +76,7 @@ $size-icon-bullet-point-min: 32px;
 $size-icon-bullet-point-max: 32px;
 
 $icon-sizes: (
-  squiggle-1:
-    fluid(
+  squiggle-1: fluid(
       $size-icon-squiggle-1-min,
       $size-icon-squiggle-1-max,
       "small",
@@ -85,10 +86,14 @@ $icon-sizes: (
   fork: fluid($size-icon-fork-min, $size-icon-fork-max, "medium", "max"),
   knife: fluid($size-icon-knife-min, $size-icon-knife-max, "medium", "max"),
   search: fluid($size-icon-search-min, $size-icon-search-max),
-  cooking-stats:
-    fluid($size-icon-cooking-stats-min, $size-icon-cooking-stats-max),
-  social-height:
-    fluid($size-icon-social-height-min, $size-icon-social-height-max),
+  cooking-stats: fluid(
+      $size-icon-cooking-stats-min,
+      $size-icon-cooking-stats-max
+    ),
+  social-height: fluid(
+      $size-icon-social-height-min,
+      $size-icon-social-height-max
+    ),
   bullet-point: fluid($size-icon-bullet-point-min, $size-icon-bullet-point-max),
 );
 
@@ -103,9 +108,13 @@ $size-toggle-track-height-max: 20px;
 $selectable-sizes: (
   toggle: (
     thumb: fluid($size-toggle-thumb-min, $size-toggle-thumb-max),
-    track-width:
-      fluid($size-toggle-track-width-min, $size-toggle-track-width-max),
-    track-height:
-      fluid($size-toggle-track-height-min, $size-toggle-track-height-max),
+    track-width: fluid(
+        $size-toggle-track-width-min,
+        $size-toggle-track-width-max
+      ),
+    track-height: fluid(
+        $size-toggle-track-height-min,
+        $size-toggle-track-height-max
+      ),
   ),
 );

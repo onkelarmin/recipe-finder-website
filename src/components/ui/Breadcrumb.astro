@@ -1,0 +1,97 @@
+---
+// Type imports
+import type { HTMLAttributes } from "astro/types";
+
+// Props
+interface Props extends HTMLAttributes<"nav"> {
+  slug: string;
+  title: string;
+}
+
+const { slug, title } = Astro.props;
+---
+
+<nav aria-label="Breadcrumb">
+  <ol>
+    <li>
+      <a href="/recipes">Recipes</a>
+    </li>
+    <li>
+      <a href=`/recipes/${slug}` aria-current="page">{title}</a>
+    </li>
+  </ol>
+</nav>
+
+<style lang="scss">
+  nav {
+    ol {
+      display: flex;
+      gap: var(--size-20);
+      align-items: center;
+      list-style-type: none;
+
+      li {
+        position: relative;
+
+        &:not(:last-child)::after {
+          content: "";
+          position: absolute;
+          height: 0.8em;
+          width: 0.13ch;
+          align-self: center;
+          right: 0;
+          border-radius: var(--br-pill);
+          background-color: currentColor;
+          opacity: 0.6;
+          transform: translateX(var(--size-10)) rotate(15deg);
+        }
+      }
+
+      a {
+        position: relative;
+        font: var(--font-7);
+        letter-spacing: var(--ls-xl);
+        color: var(--fg-text-strong);
+        text-decoration: none;
+        border-radius: var(--br-xs);
+
+        &:not([aria-current="page"]) {
+          opacity: 0.6;
+        }
+
+        &::before {
+          content: "";
+          position: absolute;
+          bottom: 0.15em;
+          width: 100%;
+          height: var(--bw-sm);
+          background-color: currentColor;
+          border-radius: var(--br-pill);
+          transform: scaleX(0);
+          opacity: 0;
+          transition:
+            transform var(--trans-default-sensitive),
+            opacity var(--trans-default);
+        }
+
+        @media (hover: hover) {
+          &:hover {
+            &::before {
+              transform: scaleX(1);
+              opacity: 1;
+            }
+          }
+        }
+
+        &:focus {
+          outline: 0px solid transparent;
+        }
+
+        &:focus-visible {
+          outline: var(--bw-md) solid var(--fg-icon-default);
+          outline-offset: var(--bw-md);
+        }
+      }
+    }
+  }
+</style>

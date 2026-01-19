@@ -17,6 +17,10 @@ export const getStaticPaths = (async () => {
 // Layout import
 import MainLayout from "@/layouts/MainLayout.astro";
 
+// Component imports
+import Recipe from "@/components/sections/Recipe.astro";
+import MoreRecipes from "@/components/sections/moreRecipes.astro";
+
 const { recipe } = Astro.props;
 
 const { overview, slug, title } = recipe.data;
@@ -27,5 +31,6 @@ const { overview, slug, title } = recipe.data;
   description={overview}
   ogImage={`og/${slug}-small.webp`}
 >
-  Hi
+  <Recipe recipe={recipe} />
+  <MoreRecipes recipe={recipe} />
 </MainLayout>

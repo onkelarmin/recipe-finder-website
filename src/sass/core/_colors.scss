@@ -28,7 +28,7 @@ $color-core-brand: (
   //   "400": oklch(0.6701 0.1862 26.35),
   //   "500": oklch(0.6119 0.1893 27.23),
   //   "700": oklch(0.5346 0.1993 29.02),
-  // ),
+   // ),
 );
 
 $color-core-gradient: (
@@ -39,7 +39,7 @@ $color-core-gradient: (
   // 2: (
   //   start: oklch(0.1459 0.0403 266.38),
   //   end: oklch(0.2179 0.0835 267.08),
-  // ),
+   // ),
 );
 
 // Has themes
@@ -79,10 +79,10 @@ $background-colors: (
       light: "accent-orange-500",
     ),
     selection: (
-      light: "accent-orange-500",
+      light: "neutral-800",
     ),
     target: (
-      light: "accent-orange-500",
+      light: "neutral-800",
     ),
   ),
   icon: (
@@ -105,10 +105,10 @@ $foreground-colors: (
       light: "neutral-950",
     ),
     selection: (
-      light: "accent-teal-500",
+      light: "neutral-000",
     ),
     target: (
-      light: "accent-teal-500",
+      light: "neutral-000",
     ),
   ),
   icon: (

@@ -1,0 +1,176 @@
+---
+// Integrations
+import { Image } from "astro:assets";
+
+// Type imports
+import type { HTMLAttributes } from "astro/types";
+import type { CollectionEntry } from "astro:content";
+
+// Component imports
+import Breadcrumb from "@components/ui/Breadcrumb.astro";
+import Wrapper from "@components/utilities/Wrapper.astro";
+import Heading from "@components/utilities/Heading.astro";
+
+// Asset imports
+import ServingsSvg from "@icons/icon-servings.svg";
+import PrepTimeSvg from "@icons/icon-prep-time.svg";
+import CookTimeSvg from "@icons/icon-cook-time.svg";
+import MarkerSvg from "@icons/icon-bullet-point.svg";
+
+// Props
+interface Props extends HTMLAttributes<"section"> {
+  recipe: CollectionEntry<"recipes">;
+}
+
+const { recipe } = Astro.props;
+
+const {
+  cookMinutes,
+  image,
+  ingredients,
+  instructions,
+  overview,
+  prepMinutes,
+  servings,
+  slug,
+  title,
+} = recipe.data;
+---
+
+<section aria-labelledby="recipe-title">
+  <Wrapper>
+    <Breadcrumb slug={slug} title={title} />
+    <div class="layout">
+      <!-- Visual -->
+      <div class="visual">
+        <Image
+          src={image.large}
+          alt={title}
+          width={900}
+          height={900}
+          priority
+        />
+      </div>
+
+      <!-- Content -->
+      <div class="content flow-20">
+        <!-- Title -->
+        <Heading tag="h1" size="h2" text={title} id="recipe-title" />
+
+        <!-- Overview -->
+        <p>{overview}</p>
+
+        <!-- Stats -->
+        <ul class="stats">
+          <li>
+            <ServingsSvg class="stats-icon" aria-hidden="true" />
+            Servings: {servings.toString()}
+          </li>
+          <li>
+            <PrepTimeSvg class="stats-icon" aria-hidden="true" />
+            Prep: {prepMinutes.toString()} mins
+          </li>
+          <li>
+            <CookTimeSvg class="stats-icon" aria-hidden="true" />
+            Cook: {cookMinutes.toString()} mins
+          </li>
+        </ul>
+
+        <!-- Ingredients -->
+        <div class="flow-16">
+          <Heading tag="h2" size="h4" text="Ingredients:" />
+          <ul class="flow-8">
+            {
+              ingredients.map((i) => (
+                <li>
+                  <MarkerSvg class="marker" aria-hidden="true" />
+                  {i}
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+
+        <!-- Instructions -->
+        <div class="flow-16">
+          <Heading tag="h2" size="h4" text="Instructions:" />
+          <ul class="flow-8">
+            {
+              instructions.map((i) => (
+                <li>
+                  <MarkerSvg class="marker" aria-hidden="true" />
+                  {i}
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+    </div>
+  </Wrapper>
+</section>
+
+<style lang="scss">
+  @use "@sass/miscellaneous" as *;
+  section {
+    padding-block-start: var(--size-48);
+    padding-block-end: var(--size-48-48-64);
+    border-bottom: var(--border-default);
+
+    .layout {
+      display: flex;
+      flex-direction: column;
+      gap: var(--size-40);
+      margin-block-start: var(--size-16);
+
+      .visual {
+        img {
+          border-radius: var(--br-md);
+        }
+      }
+
+      .content {
+        .stats {
+          display: flex;
+          flex-wrap: wrap;
+          column-gap: var(--size-16);
+          row-gap: var(--size-8);
+          list-style-type: none;
+
+          li {
+            display: flex;
+            align-items: center;
+            gap: var(--size-6);
+            flex-wrap: nowrap;
+            font: var(--font-7);
+            letter-spacing: var(--ls-xl);
+            color: var(--fg-text-strong);
+          }
+
+          &-icon {
+            width: var(--size-icon-cooking-stats);
+          }
+        }
+
+        li:has(.marker) {
+          display: grid;
+          grid-template-columns: auto 1fr;
+          align-items: center;
+          gap: var(--size-8);
+
+          .marker {
+            width: var(--size-24);
+          }
+        }
+      }
+
+      @include mq(large) {
+        flex-direction: row;
+
+        .visual {
+          max-width: 36.25rem;
+        }
+      }
+    }
+  }
+</style>
