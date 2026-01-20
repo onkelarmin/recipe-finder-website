@@ -19,12 +19,7 @@ const { variant, options, classes } = Astro.props;
 const anchorName = `--menu-button-${variant}`;
 ---
 
-<div
-  class:list={["filter-menu", classes]}
-  id=`filter-menu-${variant}`
-  role="menu"
-  popover
->
+<div class:list={["filter-menu", classes]} id=`filter-menu-${variant}` popover>
   <fieldset>
     <legend class="visually-hidden"
       >Set a maximum {variant} time. Applying a filter will change the listed recipes</legend

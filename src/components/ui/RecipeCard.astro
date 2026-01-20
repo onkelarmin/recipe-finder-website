@@ -22,11 +22,24 @@ interface Props extends HTMLAttributes<"article"> {
 
 const { recipe } = Astro.props;
 
-const { image, cookMinutes, prepMinutes, servings, slug, title, overview } =
-  recipe.data;
+const {
+  image,
+  ingredients,
+  cookMinutes,
+  prepMinutes,
+  servings,
+  slug,
+  title,
+  overview,
+} = recipe.data;
 ---
 
-<article class="recipe-card" data-prep={prepMinutes} data-cook={cookMinutes}>
+<article
+  class="recipe-card"
+  data-prep={prepMinutes}
+  data-cook={cookMinutes}
+  data-ingredients={JSON.stringify(ingredients)}
+>
   <!-- Visual -->
   <div class="visual">
     <Image src={image.large} alt={title} width={900} height={825} />
