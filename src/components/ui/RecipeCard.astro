@@ -26,7 +26,7 @@ const { image, cookMinutes, prepMinutes, servings, slug, title, overview } =
   recipe.data;
 ---
 
-<article class="recipe-card">
+<article class="recipe-card" data-prep={prepMinutes} data-cook={cookMinutes}>
   <!-- Visual -->
   <div class="visual">
     <Image src={image.large} alt={title} width={900} height={825} />

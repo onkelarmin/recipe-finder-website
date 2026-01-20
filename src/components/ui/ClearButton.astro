@@ -1,7 +1,7 @@
 ---
 // Type imports
 import type { HTMLAttributes } from "astro/types";
-import type { Variant } from "@components/ui/FilterMenu.astro";
+import type { Variant } from "@/domain/filters";
 
 // Props
 interface Props extends HTMLAttributes<"button"> {
@@ -44,23 +44,3 @@ const { variant } = Astro.props;
     }
   }
 </style>
-
-<script>
-  const clearButtons = [
-    ...document.querySelectorAll(".clear-button"),
-  ] as HTMLButtonElement[];
-
-  clearButtons.forEach((btn) => {
-    btn.addEventListener("click", (e) => {
-      const radioButtons = btn
-        .closest(".filter-menu")
-        ?.querySelectorAll(
-          'input[type="radio"]'
-        ) as NodeListOf<HTMLInputElement>;
-      const radioButtonsArr = [...radioButtons];
-      radioButtonsArr.forEach((i) => {
-        i.checked = false;
-      });
-    });
-  });
-</script>

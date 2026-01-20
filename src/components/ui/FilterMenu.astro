@@ -1,12 +1,11 @@
 ---
 // Type imports
 import type { HTMLAttributes } from "astro/types";
+import type { Variant } from "@/domain/filters";
 
 // Component imports
 import RadioButton from "@components/ui/RadioButton.astro";
-import ClearButton from "./ClearButton.astro";
-
-export type Variant = "prep" | "cook";
+import ClearButton from "@components/ui/ClearButton.astro";
 
 // Props
 interface Props extends HTMLAttributes<"div"> {
@@ -43,10 +42,15 @@ const anchorName = `--menu-button-${variant}`;
     border: var(--border-default);
     box-shadow: var(--bs-filter-menu);
     padding: var(--pad-cont-sm);
-    position-anchor: var(--anchorName);
-    top: anchor(bottom);
-    left: anchor(left);
+    top: anchor(var(--anchorName) bottom);
+    left: anchor(var(--anchorName) left);
     margin-block-start: var(--size-8);
+
+    &.sticky {
+      position-anchor: --site-header;
+      top: anchor(bottom);
+      left: anchor(var(--anchorName) left);
+    }
 
     fieldset {
       display: flex;

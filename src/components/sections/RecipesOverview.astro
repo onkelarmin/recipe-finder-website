@@ -90,3 +90,99 @@ const allRecipes = await getCollection("recipes");
     }
   }
 </style>
+
+<script>
+  // Type imports
+  import { isVariant, type Variant } from "@/domain/filters";
+
+  // GSAP
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Type declarations
+  type Filters = {
+    [K in Variant]: number | null;
+  };
+
+  // Elements
+  const header = document.querySelector<HTMLElement>(".site-header");
+  const filterMenus = document.querySelectorAll<HTMLDivElement>(".filter-menu");
+  const filterGroups = document.querySelectorAll<HTMLFieldSetElement>(
+    ".filter-menu > fieldset",
+  );
+  const allRecipes = document.querySelectorAll<HTMLElement>(".recipe-card");
+  const clearButtons =
+    document.querySelectorAll<HTMLButtonElement>(".clear-button");
+
+  // Variables
+  const filters: Filters = {
+    prep: null,
+    cook: null,
+  };
+
+  // Functions
+  function updateFilter(variant: Variant, value: number | null) {
+    filters[variant] = value;
+  }
+
+  function applyFilters() {
+    allRecipes.forEach((recipe) => {
+      const prepTime = Number(recipe.dataset.prep ?? Infinity);
+      const cookTime = Number(recipe.dataset.cook ?? Infinity);
+      const li = recipe.closest("li");
+
+      const shouldHide =
+        (filters.prep !== null && prepTime > filters.prep) ||
+        (filters.cook !== null && cookTime > filters.cook);
+
+      li?.toggleAttribute("hidden", shouldHide);
+    });
+  }
+
+  function handleFilterChange(variant: Variant, value: string | null) {
+    updateFilter(variant, value === null ? null : Number(value));
+    applyFilters();
+  }
+
+  // Event listeners
+  filterGroups.forEach((el) => {
+    el.addEventListener("change", (e) => {
+      const target = e.target;
+      if (!(target instanceof HTMLInputElement)) return;
+      if (target.type !== "radio") return;
+      if (!isVariant(target.name)) return;
+
+      handleFilterChange(target.name, target.value);
+    });
+  });
+
+  clearButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      // update UI
+      const variant = btn.dataset.variant;
+      if (!variant || !isVariant(variant)) return;
+
+      handleFilterChange(variant, null);
+
+      // Uncheck radio buttons
+      btn
+        .closest(".filter-menu")
+        ?.querySelectorAll<HTMLInputElement>('input[type="radio"]')
+        .forEach((i) => {
+          i.checked = false;
+        });
+    });
+  });
+
+  // GSAP ("sticky" behaviour of Filter menus)
+  filterMenus.forEach((menu) => {
+    ScrollTrigger.create({
+      trigger: menu,
+      start: () => `top ${header?.offsetHeight}`,
+      end: "max",
+      onEnter: () => menu.classList.add("sticky"),
+      onLeaveBack: () => menu.classList.remove("sticky"),
+    });
+  });
+</script>

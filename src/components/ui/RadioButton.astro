@@ -1,7 +1,7 @@
 ---
 // Type imports
 import type { HTMLAttributes } from "astro/types";
-import type { Variant } from "@components/ui/FilterMenu.astro";
+import type { Variant } from "@/domain/filters";
 
 // Props
 interface Props extends HTMLAttributes<"label"> {
@@ -13,7 +13,7 @@ const { variant, option } = Astro.props;
 ---
 
 <label>
-  <input type="radio" name={`${variant}-time`} value={option} />
+  <input type="radio" name={variant} value={option} />
   {option} minutes
 </label>
 
