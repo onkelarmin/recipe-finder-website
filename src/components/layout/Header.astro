@@ -31,8 +31,15 @@ import Logo from "@icons/logo.svg";
     padding-block-start: var(--size-16-32-20);
     padding-block-end: var(--size-16-20-20);
     border-block-end: var(--border-default);
-    backdrop-filter: blur(16px);
     anchor-name: --site-header;
+
+    ::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      backdrop-filter: blur(16px);
+    }
 
     .layout {
       display: grid;
