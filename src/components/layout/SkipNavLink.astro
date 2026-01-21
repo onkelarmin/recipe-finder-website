@@ -25,11 +25,15 @@
     padding-block: var(--skip-nav-link-padding-block);
     padding-inline: var(--skip-nav-link-padding-inline);
     transform: translateY(-120%);
-    transition: transform var(--trans-default);
+    opacity: 0;
+    transition:
+      transform var(--trans-default-sensitive),
+      opacity var(--trans-default);
   }
 
   a:focus {
     transform: translateY(0);
+    opacity: 1;
     outline: 0px solid transparent;
   }
 </style>
