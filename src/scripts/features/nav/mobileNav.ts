@@ -36,7 +36,6 @@ export function initMobileNav() {
     } else {
       // is tablet/desktop
       primaryNavMenu?.removeAttribute("inert");
-      closeMobileMenu();
     }
   }
 
