@@ -1,5 +1,5 @@
 // Imports
-import { customProp } from "@/lib/helper";
+import { customProp, cssTime } from "@/lib/helper";
 
 export function initMobileNav() {
   // Variables
@@ -26,10 +26,11 @@ export function initMobileNav() {
     return btnToggle?.getAttribute("aria-expanded") === "true";
   }
 
-  function setupPrimaryNav(isMobile: boolean) {
+  const setupPrimaryNav = (isMobile: boolean) => {
     if (isMobile) {
       // is mobile
-      primaryNavMenu?.setAttribute("inert", "");
+      primaryNavMenu.setAttribute("inert", "");
+      primaryNavMenu.style.transition = "none";
       primaryNavLinks.forEach((link) => {
         link.addEventListener("click", closeMobileMenu);
       });
@@ -37,27 +38,35 @@ export function initMobileNav() {
       // is tablet/desktop
       primaryNavMenu?.removeAttribute("inert");
     }
-  }
+  };
 
-  function openMobileMenu() {
-    btnToggle?.setAttribute("aria-expanded", "true");
-    primaryNavMenu?.setAttribute("data-open", "true");
-    primaryNavMenu?.removeAttribute("inert");
-    main?.setAttribute("inert", "");
+  const openMobileMenu = () => {
+    btnToggle.setAttribute("aria-expanded", "true");
+    primaryNavMenu.setAttribute("data-open", "true");
+    primaryNavMenu.removeAttribute("inert");
+    primaryNavMenu.removeAttribute("style");
+    main.setAttribute("inert", "");
     document.addEventListener("keydown", onEscape);
-  }
+  };
 
-  function closeMobileMenu() {
-    btnToggle?.setAttribute("aria-expanded", "false");
-    primaryNavMenu?.setAttribute("data-open", "false");
-    primaryNavMenu?.setAttribute("inert", "");
+  const closeMobileMenu = () => {
+    btnToggle.setAttribute("aria-expanded", "false");
+    primaryNavMenu.setAttribute("data-open", "false");
+    primaryNavMenu.setAttribute("inert", "");
     main?.removeAttribute("inert");
     document.removeEventListener("keydown", onEscape);
-  }
 
-  function onEscape(e: KeyboardEvent) {
+    setTimeout(
+      () => {
+        primaryNavMenu.style.transition = "none";
+      },
+      cssTime("--motion-slow") * 1000,
+    );
+  };
+
+  const onEscape = (e: KeyboardEvent) => {
     if (e.key === "Escape") closeMobileMenu();
-  }
+  };
 
   // EventListeners
   btnToggle.addEventListener("click", () => {
