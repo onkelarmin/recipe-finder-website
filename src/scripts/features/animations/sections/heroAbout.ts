@@ -1,12 +1,10 @@
+import { customProp, cssTime } from "@/lib/helper";
 import { gsap } from "../gsap";
-import { cssTime, customProp } from "@/lib/helper";
 
-export function initValueProp() {
+export function initHeroAbout() {
   // Section
-  const section = document.querySelector<HTMLElement>("#value-prop-section");
+  const section = document.querySelector<HTMLElement>("#hero-about-section");
   if (!section) return;
-
-  let hasAnimated = false;
 
   // Match media
   const mm = gsap.matchMedia();
@@ -19,48 +17,29 @@ export function initValueProp() {
       reduceMotion: "(prefers-reduced-motion: reduce)",
     },
     (context) => {
+      const { isReverted } = context;
       const { isMobileP, isMobileL, isTablet, isDesktop, reduceMotion } =
         context.conditions ?? {};
-      const defaults = {
-        duration: cssTime("--motion-slow"),
-        ease: "back",
-      };
+      const duration = isReverted ? 0 : cssTime("--motion-slow");
 
       // Context
       return gsap.context(() => {
-        if (hasAnimated) return;
-
         const tl = gsap
           .timeline({
             // Defaults
-            defaults,
-            // ScrollTrigger
-            scrollTrigger: {
-              trigger: section,
-              start: "top 60%",
-            },
+            defaults: { duration: duration, ease: "back" },
           })
-          .set(".layout", {
-            perspective: 900,
-          })
+          .set(".layout", { perspective: 900 })
           .set(".visual", {
             transformOrigin: "50% 50% -250px",
           })
-          .from(".content .heading, .content p", {
+          .to("#hero-about-section", { autoAlpha: 1, duration: 0.1 })
+          .from(".content > *", {
             y: reduceMotion ? 0 : isTablet ? 20 : 0,
-            scale: reduceMotion ? 1 : 0.95,
+            scale: reduceMotion ? 1 : 0.9,
             opacity: 0,
             stagger: 0.2,
           })
-          .from(
-            ".text-heighlight-half",
-            {
-              "--scaleX-value": reduceMotion ? 1 : 0,
-              duration: 0.25,
-              ease: "power1.out",
-            },
-            "<40%",
-          )
           .from(
             ".visual",
             {
@@ -71,11 +50,11 @@ export function initValueProp() {
               opacity: 0,
               filter: reduceMotion ? "none" : "blur(16px)",
               duration: 0.8,
+              // repeat: -1,
+              // yoyo: true,
             },
             "<40%",
           );
-
-        hasAnimated = true;
       }, section);
     },
   );

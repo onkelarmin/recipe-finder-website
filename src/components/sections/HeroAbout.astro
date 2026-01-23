@@ -12,36 +12,35 @@ import DecoSvg from "@icons/pattern-squiggle-2.svg";
 ---
 
 <section
-  class="pad-sect-start-sm pad-sect-end-lg border-bottom-default overflow-x-clip"
+  id="hero-about-section"
+  class="pad-sect-start-sm pad-sect-end-lg border-bottom-default overflow-x-clip gsap-auto-alpha"
   aria-labelledby="hero-title"
 >
   <Wrapper>
     <div class="layout">
       <!-- Content -->
       <div class="content">
-        <div class="flow-24">
-          <p
-            class="font-5 fit-content bg-text-highlight pad-block-2 pad-inline-6 br-6"
-          >
-            Our mission
+        <p
+          class="font-5 fit-content bg-text-highlight pad-block-2 pad-inline-6 br-6"
+        >
+          Our mission
+        </p>
+        <Heading
+          tag="h1"
+          size="h2"
+          text="Help more people cook nourishing meals, more often."
+          id="hero-title"
+        />
+        <div class="flow-16">
+          <p>
+            Healthy Recipe Finder was created to prove that healthy eating can
+            be convenient, affordable, and genuinely delicious.
           </p>
-          <Heading
-            tag="h1"
-            size="h2"
-            text="Help more people cook nourishing meals, more often."
-            id="hero-title"
-          />
-          <div class="flow-16">
-            <p>
-              Healthy Recipe Finder was created to prove that healthy eating can
-              be convenient, affordable, and genuinely delicious.
-            </p>
-            <p>
-              We showcase quick, whole-food dishes that anyone can master—no
-              fancy equipment, no ultra-processed shortcuts—just honest
-              ingredients and straightforward steps.
-            </p>
-          </div>
+          <p>
+            We showcase quick, whole-food dishes that anyone can master—no fancy
+            equipment, no ultra-processed shortcuts—just honest ingredients and
+            straightforward steps.
+          </p>
         </div>
       </div>
       <!-- Visual -->
@@ -69,6 +68,11 @@ import DecoSvg from "@icons/pattern-squiggle-2.svg";
     flex-direction: column;
     gap: var(--size-40-64-64);
     align-items: center;
+
+    .content {
+      display: grid;
+      gap: var(--size-24);
+    }
 
     .visual {
       img {

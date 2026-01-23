@@ -18,6 +18,10 @@ body {
   min-height: 100vh;
 }
 
+main > section {
+  overflow-x: clip;
+}
+
 img,
 picture,
 video {

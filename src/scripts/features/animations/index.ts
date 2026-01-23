@@ -5,6 +5,7 @@ import { initHeroHome } from "./sections/heroHome";
 import { initFeatures } from "./sections/features";
 import { initValueProp } from "./sections/valueProp";
 import { initCallToAction } from "./sections/callToAction";
+import { initHeroAbout } from "./sections/heroAbout";
 
 export function initAnimations() {
   initScrollTriggerRefresh();
@@ -13,4 +14,5 @@ export function initAnimations() {
   initFeatures();
   initValueProp();
   initCallToAction();
+  initHeroAbout();
 }

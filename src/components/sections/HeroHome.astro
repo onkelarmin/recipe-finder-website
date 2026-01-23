@@ -18,38 +18,39 @@ import DecoSVG from "@icons/pattern-squiggle-1.svg";
   aria-labelledby="hero-title"
 >
   <Wrapper>
-    <!-- Content -->
-    <div class="content text-center-large">
-      <Heading
-        tag="h1"
-        size="h1"
-        highlighted="Healthy"
-        text=" meals, zero fuss"
-        id="hero-title"
-      />
-      <p>
-        Discover eight quick, whole-food recipes that you can cook tonight—no
-        processed junk, no guesswork.
-      </p>
-      <ButtonLink
-        href="/recipes"
-        variant="hero"
-        text="Start exploring"
-        classes="mar-inline-auto-large"
-      />
-    </div>
-
-    <!-- Visual -->
-    <div class="visual">
-      <Image
-        src={heroImage}
-        alt="A woman slices fresh vegetables on a cutting board, surrounded by kitchen utensils and ingredients."
-        width={1192}
-        height={530}
-        priority
-      />
-      <!-- Decorative -->
-      <DecoSVG class="deco-svg" />
+    <div class="layout">
+      <!-- Content -->
+      <div class="content text-center-large">
+        <Heading
+          tag="h1"
+          size="h1"
+          highlighted="Healthy"
+          text=" meals, zero fuss"
+          id="hero-title"
+        />
+        <p>
+          Discover eight quick, whole-food recipes that you can cook tonight—no
+          processed junk, no guesswork.
+        </p>
+        <ButtonLink
+          href="/recipes"
+          variant="hero"
+          text="Start exploring"
+          classes="mar-inline-auto-large"
+        />
+      </div>
+      <!-- Visual -->
+      <div class="visual">
+        <Image
+          src={heroImage}
+          alt="A woman slices fresh vegetables on a cutting board, surrounded by kitchen utensils and ingredients."
+          width={1192}
+          height={530}
+          priority
+        />
+        <!-- Decorative -->
+        <DecoSVG class="deco-svg" />
+      </div>
     </div>
   </Wrapper>
 </section>

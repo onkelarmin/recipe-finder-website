@@ -1,8 +1,16 @@
 import { gsap } from "../gsap";
 import { cssTime, customProp } from "@/lib/helper";
-import { GSDevTools } from "../gsap";
 
 export function initCallToAction() {
+  // Section
+  const section = document.querySelector<HTMLElement>(
+    "#call-to-action-section",
+  );
+  if (!section) return;
+
+  let hasAnimated = false;
+
+  // Match media
   const mm = gsap.matchMedia();
   mm.add(
     {
@@ -13,98 +21,108 @@ export function initCallToAction() {
       reduceMotion: "(prefers-reduced-motion: reduce)",
     },
     (context) => {
-      const { isReverted } = context;
       const { isMobileP, isMobileL, isTablet, isDesktop, reduceMotion } =
         context.conditions ?? {};
-      const duration = isReverted ? 0 : cssTime("--motion-slow");
 
-      const forkTl = gsap
-        .timeline()
-        .set("#call-to-action-section .fork-svg .fork", {
-          stroke: "#FE9F6B",
-        })
-        .from("#call-to-action-section .fork-svg .squiggle", {
-          opacity: 0,
-          ease: "none",
-        })
-        .fromTo(
-          "#call-to-action-section .fork-svg .fork",
-          { drawSVG: "80% 80%" },
-          {
-            drawSVG: reduceMotion ? "80% 80%" : "80% 180%",
-            duration: 1,
-            ease: "power2.out",
-          },
-          "<",
-        )
-        .fromTo(
-          "#call-to-action-section .fork-svg .fork",
-          {
-            fill: "transparent",
-            stroke: "#FE9F6B",
-          },
-          {
-            fill: "#D0DCD9",
-            stroke: "#D0DCD9",
-            ease: "power2.inOut",
-          },
-        );
+      const defaults = {
+        duration: cssTime("--motion-slow"),
+        ease: "back",
+      };
 
-      const knifeTl = gsap
-        .timeline()
-        .set("#call-to-action-section .knife-svg .knife", {
-          stroke: "#49AC9B",
-        })
-        .from("#call-to-action-section .knife-svg .squiggle", {
-          opacity: 0,
-          ease: "none",
-        })
-        .fromTo(
-          "#call-to-action-section .knife-svg .knife",
-          { drawSVG: "90% 90%" },
-          {
-            drawSVG: reduceMotion ? "90% 90%" : "90% 190%",
-            duration: 1,
-            ease: "power2.out",
-          },
-          "<",
-        )
-        .fromTo(
-          "#call-to-action-section .knife-svg .knife",
-          {
-            fill: "transparent",
-            stroke: "#49AC9B",
-          },
-          {
-            fill: "#D0DCD9",
-            stroke: "#D0DCD9",
-            ease: "power2.inOut",
-          },
-        );
+      // Context
+      return gsap.context(() => {
+        if (hasAnimated) return;
 
-      const tl = gsap
-        .timeline({
-          // Defaults
-          defaults: { duration: duration, ease: "back" },
-          // ScrollTrigger
-          scrollTrigger: {
-            trigger: "#call-to-action-section",
-            start: "top 60%",
-          },
-        })
-        .from("#call-to-action-section .layout", { opacity: 0 })
-        .from(
-          "#call-to-action-section .content > *",
-          {
-            y: reduceMotion ? 0 : isTablet ? 20 : 0,
-            scale: reduceMotion ? 1 : 0.9,
+        const forkTl = gsap
+          .timeline({ defaults })
+          .set(".fork-svg .fork", {
+            stroke: reduceMotion ? "#D0DCD9" : "#FE9F6B",
+          })
+          .from(".fork-svg .squiggle", {
             opacity: 0,
-            stagger: 0.2,
-          },
-          "<40%",
-        )
-        .add(forkTl, "<")
-        .add(knifeTl, "<");
+            ease: "none",
+          })
+          .fromTo(
+            ".fork-svg .fork",
+            { drawSVG: "80% 80%" },
+            {
+              drawSVG: "80% 180%",
+              duration: reduceMotion ? 0 : 1,
+              ease: "power2.out",
+            },
+            "<",
+          )
+          .fromTo(
+            ".fork-svg .fork",
+            {
+              fill: "transparent",
+            },
+            {
+              fill: "#D0DCD9",
+              stroke: "#D0DCD9",
+              duration: reduceMotion ? 0 : 0.6,
+              ease: "power2.inOut",
+            },
+          );
+
+        const knifeTl = gsap
+          .timeline({ defaults })
+          .set(".knife-svg .knife", {
+            stroke: reduceMotion ? "#D0DCD9" : "#49AC9B",
+          })
+          .from(".knife-svg .squiggle", {
+            opacity: 0,
+            ease: "none",
+          })
+          .fromTo(
+            ".knife-svg .knife",
+            { drawSVG: "90% 90%" },
+            {
+              drawSVG: "90% 190%",
+              duration: reduceMotion ? 0 : 1,
+              ease: "power2.out",
+            },
+            "<",
+          )
+          .fromTo(
+            ".knife-svg .knife",
+            {
+              fill: "transparent",
+            },
+            {
+              fill: "#D0DCD9",
+              stroke: "#D0DCD9",
+              duration: reduceMotion ? 0 : 0.6,
+              ease: "power2.inOut",
+            },
+          );
+
+        const tl = gsap
+          .timeline({
+            // Defaults
+            defaults,
+            // ScrollTrigger
+            scrollTrigger: {
+              trigger: section,
+              start: "top 60%",
+            },
+          })
+          .from(".layout", { opacity: 0 })
+          .from(
+            ".content > *",
+            {
+              y: reduceMotion ? 0 : isTablet ? 20 : 0,
+              scale: reduceMotion ? 1 : 0.9,
+              opacity: 0,
+              stagger: 0.2,
+            },
+            "<40%",
+          )
+          .add(forkTl, "<")
+          .add(knifeTl, "<");
+
+        hasAnimated = true;
+      }, section);
     },
   );
 }
