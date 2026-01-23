@@ -57,6 +57,7 @@ const CustomTag = tag;
 
     // Highlighted span
     .highlighted {
+      --scaleX-value: 1;
       position: relative;
 
       &::before {
@@ -65,12 +66,14 @@ const CustomTag = tag;
         z-index: -1;
         left: var(--size-4);
         bottom: 10%;
-        width: 100%;
+        width: 105%;
         height: 40%;
         background-color: var(--bg-text-highlight);
         opacity: 0.5;
         border-radius: var(--br-xs);
-        transform: scaleX(1.05);
+        transform: translateX(calc(var(--size-4) * -1))
+          scaleX(var(--scaleX-value));
+        transform-origin: left center;
       }
     }
   }

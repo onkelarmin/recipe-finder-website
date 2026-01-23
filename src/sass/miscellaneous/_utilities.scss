@@ -331,6 +331,8 @@
 
 // ============================= Project-specific utilities =============================
 .text-heighlight-half {
+  --scaleX-value: 1;
+
   position: relative;
   font: var(--font-5);
   letter-spacing: var(--ls-md);
@@ -346,5 +348,7 @@
     height: 45%;
     background-color: var(--bg-text-highlight);
     border-radius: var(--br-xs);
+    transform: scaleX(var(--scaleX-value));
+    transform-origin: left center;
   }
 }

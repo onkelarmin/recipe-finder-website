@@ -16,10 +16,6 @@ export function initMobileNav() {
 
   if (!btnToggle || !primaryNav || !primaryNavMenu || !main) return;
 
-  const primaryNavLinks = Array.from(
-    primaryNavMenu.querySelectorAll<HTMLAnchorElement>("li > a"),
-  );
-
   const media = window.matchMedia(`(width < ${customProp("--bp-large")})`);
 
   function isOpen() {
@@ -31,9 +27,6 @@ export function initMobileNav() {
       // is mobile
       primaryNavMenu.setAttribute("inert", "");
       primaryNavMenu.style.transition = "none";
-      primaryNavLinks.forEach((link) => {
-        link.addEventListener("click", closeMobileMenu);
-      });
     } else {
       // is tablet/desktop
       primaryNavMenu?.removeAttribute("inert");

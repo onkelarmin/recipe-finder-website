@@ -1,5 +1,7 @@
+import { gsap } from "./gsap";
 import { ScrollTrigger } from "./gsap";
 
+// Refresh ScrollTrigger on resize
 let resizeTimeout: number;
 
 export function initScrollTriggerRefresh() {

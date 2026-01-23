@@ -9,10 +9,10 @@ import ForkSvg from "@icons/pattern-fork.svg";
 import KnifeSvg from "@icons/pattern-knife.svg";
 ---
 
-<section aria-labelledby="call-to-action-title">
+<section id="call-to-action-section" aria-labelledby="call-to-action-title">
   <Wrapper>
-    <div class="bg-container-cta br-3xl">
-      <div class="layout">
+    <div class="layout">
+      <div class="content">
         <Heading
           tag="h2"
           size="h2"
@@ -21,10 +21,10 @@ import KnifeSvg from "@icons/pattern-knife.svg";
         />
         <p>Hit the button, pick a recipe, and get dinner on the table—fast.</p>
         <ButtonLink href="/recipes" variant="cta" text="Browse recipes" />
-        <!-- Decorative -->
-        <ForkSvg class="fork-svg" />
-        <KnifeSvg class="knife-svg" />
       </div>
+      <!-- Decorative -->
+      <ForkSvg class="fork-svg" />
+      <KnifeSvg class="knife-svg" />
     </div>
   </Wrapper>
 </section>
@@ -35,18 +35,22 @@ import KnifeSvg from "@icons/pattern-knife.svg";
   .layout {
     position: relative;
     z-index: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    border-radius: inherit;
+    background-color: var(--bg-container-cta);
+    border-radius: var(--br-3xl);
     overflow: clip;
     padding-block: var(--pad-sect-md);
     padding-inline: var(--size-16);
 
-    p {
-      margin-block-start: var(--size-12);
-      margin-block-end: var(--size-32-40-40);
+    .content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+
+      p {
+        margin-block-start: var(--size-12);
+        margin-block-end: var(--size-32-40-40);
+      }
     }
 
     // Decorative
