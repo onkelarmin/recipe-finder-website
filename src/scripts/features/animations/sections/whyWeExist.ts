@@ -1,9 +1,9 @@
 import { gsap } from "../gsap";
 import { MEDIA } from "../media";
 
-export function initFeatures() {
+export function initWhyWeExist() {
   // Section
-  const section = document.querySelector<HTMLElement>("#features-section");
+  const section = document.querySelector<HTMLElement>("#why-we-exist-section");
   if (!section) return;
 
   // Match media
@@ -17,19 +17,20 @@ export function initFeatures() {
 
     // Context
     return gsap.context(() => {
-      gsap.from("#features-title", {
+      gsap.from(".heading", {
         y: reduceMotion ? 0 : isTablet ? 20 : 0,
         scale: reduceMotion ? 1 : 0.95,
         opacity: 0,
         scrollTrigger: {
-          trigger: "#features-title",
+          trigger: ".heading",
           start: "top 80%",
         },
       });
 
-      gsap.utils.toArray<HTMLElement>("#features-list > li").forEach((el) => {
+      gsap.utils.toArray<HTMLUListElement>("ul > li").forEach((el) => {
         gsap.from(el, {
-          scale: reduceMotion ? 1 : 0.9,
+          y: reduceMotion ? 0 : isTablet ? 20 : 0,
+          scale: reduceMotion ? 1 : 0.95,
           opacity: 0,
           scrollTrigger: {
             trigger: el,

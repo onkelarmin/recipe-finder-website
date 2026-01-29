@@ -1,9 +1,11 @@
 import { gsap } from "../gsap";
 import { MEDIA } from "../media";
 
-export function initValueProp() {
+export function initBeyondThePlate() {
   // Section
-  const section = document.querySelector<HTMLElement>("#value-prop-section");
+  const section = document.querySelector<HTMLElement>(
+    "#beyond-the-plate-section",
+  );
   if (!section) return;
 
   // Match media
@@ -19,29 +21,18 @@ export function initValueProp() {
     return gsap.context(() => {
       // Content
       gsap.utils
-        .toArray<HTMLElement>(".content .heading, .content p")
+        .toArray<HTMLElement>(".heading, .content p, .content ul")
         .forEach((el) => {
           gsap.from(el, {
             y: reduceMotion ? 0 : isTablet ? 20 : 0,
             scale: reduceMotion ? 1 : 0.95,
             opacity: 0,
-            stagger: 0.2,
             scrollTrigger: {
               trigger: el,
               start: "top 80%",
             },
           });
         });
-
-      gsap.from(".text-heighlight-half", {
-        "--scaleX-value": reduceMotion ? 1 : 0,
-        duration: 0.25,
-        ease: "power1.out",
-        scrollTrigger: {
-          trigger: ".text-heighlight-half",
-          start: "top 80%",
-        },
-      });
 
       // Visual
       gsap.set(".layout", {

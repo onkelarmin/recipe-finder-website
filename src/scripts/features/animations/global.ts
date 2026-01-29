@@ -1,3 +1,4 @@
+import { cssTime } from "@/lib/helper";
 import { gsap } from "./gsap";
 import { ScrollTrigger } from "./gsap";
 
@@ -10,5 +11,13 @@ export function initScrollTriggerRefresh() {
     resizeTimeout = window.setTimeout(() => {
       ScrollTrigger.refresh();
     }, 150);
+  });
+}
+
+// Default reveal ScrollTrigger
+export function initGsapDefaults() {
+  gsap.defaults({
+    duration: cssTime("--motion-slow"),
+    ease: "back",
   });
 }
