@@ -37,7 +37,11 @@ const {
 } = recipe.data;
 ---
 
-<section aria-labelledby="recipe-title">
+<section
+  id="recipe-section"
+  class="gsap-auto-alpha"
+  aria-labelledby="recipe-title"
+>
   <Wrapper>
     <Breadcrumb slug={slug} title={title} />
     <div class="layout">

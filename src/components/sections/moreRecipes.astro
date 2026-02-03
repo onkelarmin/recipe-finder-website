@@ -25,10 +25,10 @@ const allRecipes = await getCollection("recipes", ({ data }) => {
 const moreRecipes = allRecipes.slice(0, 3);
 ---
 
-<section aria-labelledby="more-recipes-title">
+<section id="more-recipes-section" aria-labelledby="more-recipes-title">
   <Wrapper>
     <Heading tag="h2" size="h3" text="More recipes" id="more-recipes-title" />
-    <ul>
+    <ul class="more-recipes-list">
       {
         moreRecipes.map((r) => (
           <li>

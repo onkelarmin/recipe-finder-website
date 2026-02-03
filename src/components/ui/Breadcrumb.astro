@@ -11,7 +11,7 @@ interface Props extends HTMLAttributes<"nav"> {
 const { slug, title } = Astro.props;
 ---
 
-<nav aria-label="Breadcrumb">
+<nav class="breadcrumb" aria-label="Breadcrumb">
   <ol>
     <li>
       <a href="/recipes">Recipes</a>
@@ -26,7 +26,8 @@ const { slug, title } = Astro.props;
   nav {
     ol {
       display: flex;
-      gap: var(--size-20);
+      column-gap: var(--size-20);
+      flex-wrap: wrap;
       align-items: center;
       list-style-type: none;
 

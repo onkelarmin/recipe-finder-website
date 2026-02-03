@@ -9,6 +9,10 @@ import { initHeroAbout } from "./sections/heroAbout";
 import { initWhyWeExist } from "./sections/whyWeExist";
 import { initPhilosophy } from "./sections/philosophy";
 import { initBeyondThePlate } from "./sections/beyondThePlate";
+import { initHeroRecipes } from "./sections/heroRecipes";
+import { initRecipesOverview } from "./sections/recipesOverview";
+import { initRecipe } from "./sections/recipe";
+import { initMoreRecipes } from "./sections/moreRecipes";
 
 export function initAnimations() {
   initScrollTriggerRefresh();
@@ -22,4 +26,8 @@ export function initAnimations() {
   initWhyWeExist();
   initPhilosophy();
   initBeyondThePlate();
+  initHeroRecipes();
+  initRecipesOverview();
+  initRecipe();
+  initMoreRecipes();
 }

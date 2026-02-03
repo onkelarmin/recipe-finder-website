@@ -14,7 +14,11 @@ import Heading from "@components/utilities/Heading.astro";
 const allRecipes = await getCollection("recipes");
 ---
 
-<section class="pad-sect-end-md" aria-labelledby="recipe-overview-title">
+<section
+  id="recipes-overview-section"
+  class="pad-sect-end-md gsap-auto-alpha"
+  aria-labelledby="recipe-overview-title"
+>
   <Wrapper>
     <Heading
       tag="h2"
