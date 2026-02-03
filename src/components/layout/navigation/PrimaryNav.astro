@@ -14,7 +14,7 @@ const currentPath = Astro.url.pathname;
 
 <nav class="primary-nav" {...rest}>
   <PrimaryNavToggle />
-  <div
+  <menu
     id="primary-nav-menu"
     class="menu"
     aria-label="Navigation"
@@ -35,7 +35,7 @@ const currentPath = Astro.url.pathname;
       }
     </ul>
     <ButtonLink href="/recipes" variant="nav" text="Browse recipes" />
-  </div>
+  </menu>
 </nav>
 <!-- Overlay -->
 <div id="mobile-nav-overlay"></div>
